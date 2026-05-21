@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Зоналар картасы</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0f;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* ── Панель ── */
+    #panel {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 9999;
+      width: 280px;
+      background: rgba(10, 10, 20, 0.92);
+      border: 1px solid rgba(99, 220, 180, 0.25);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+
+    #panel-header {
+      padding: 14px 16px;
+      background: rgba(99, 220, 180, 0.08);
+      border-bottom: 1px solid rgba(99, 220, 180, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #panel-header h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #63dcb4;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #zone-count {
+      background: #63dcb4;
+      color: #0a0a0f;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-family: 'Unbounded', sans-serif;
+    }
+
+    #zone-list {
+      max-height: 320px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #63dcb440 transparent;
+    }
+
+    .zone-item {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .zone-item:hover {
+      background: rgba(99, 220, 180, 0.1);
+    }
+
+    .zone-item:last-child { border-bottom: none; }
+
+    .zone-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #63dcb4;
+      flex-shrink: 0;
+    }
+
+    .zone-label {
+      color: #e0f0ea;
+      font-size: 12px;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .zone-pts {
+      color: rgba(99, 220, 180, 0.6);
+      font-size: 10px;
+    }
+
+    /* ── Төменгі бар ── */
+    #bottom-bar {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #63dcb4;
+      color: #0a0a0f;
+      box-shadow: 0 4px 20px rgba(99, 220, 180, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #7fffd4;
+      box-shadow: 0 4px 28px rgba(99, 220, 180, 0.55);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(10, 10, 20, 0.9);
+      color: #63dcb4;
+      border: 1px solid rgba(99, 220, 180, 0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(99, 220, 180, 0.1);
+      transform: translateY(-1px);
+    }
+
+    /* ── Popup ── */
+    .leaflet-popup-content-wrapper {
+      background: rgba(10, 10, 20, 0.95) !important;
+      border: 1px solid rgba(99, 220, 180, 0.3) !important;
+      border-radius: 10px !important;
+      color: #e0f0ea !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5) !important;
+      backdrop-filter: blur(10px);
+    }
+
+    .leaflet-popup-tip {
+      background: rgba(10, 10, 20, 0.95) !important;
+    }
+
+    .popup-inner { padding: 4px 2px; }
+    .popup-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      color: #63dcb4;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .popup-row {
+      font-size: 11px;
+      color: rgba(224, 240, 234, 0.7);
+      margin-bottom: 3px;
+    }
+    .popup-row span {
+      color: #e0f0ea;
+      font-weight: 500;
+    }
+
+    /* Жүктеу экраны */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #0a0a0f;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      transition: opacity 0.4s;
+    }
+
+    #loader h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      color: #63dcb4;
+      letter-spacing: 0.1em;
+    }
+
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(99, 220, 180, 0.2);
+      border-top-color: #63dcb4;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body>
+
+<div id="loader">
+  <div class="spinner"></div>
+  <h1>ЗОНАЛАР ЖҮКТЕЛУДЕ…</h1>
+</div>
+
+<div id="map"></div>
+
+<!-- Панель -->
+<div id="panel">
+  <div id="panel-header">
+    <h2>Зоналар тізімі</h2>
+    <span id="zone-count">0</span>
+  </div>
+  <div id="zone-list"></div>
+</div>
+
+<!-- Төменгі кнопкалар -->
+<div id="bottom-bar">
+  <button class="btn btn-primary" onclick="fitAllZones()">🗺 Барлығын көрсету</button>
+  <button class="btn btn-secondary" onclick="downloadJSON()">⬇ JSON жүктеу</button>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf/turf.min.js"></script>
+
+<script>
+  // ── Карта ──
+  const map = L.map('map').setView([43.2980, 68.3050], 14);
+
+  const satellite = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    { attribution: 'Tiles © Esri' }
+  );
+  const street = L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { attribution: '© OpenStreetMap' }
+  );
+  const hybrid = L.tileLayer(
+    'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
+    { attribution: 'Google Hybrid' }
+  );
+
+  satellite.addTo(map);
+  L.control.layers({
+    "🛰 Satellite": satellite,
+    "🗺 Street": street,
+    "🌐 Hybrid": hybrid
+  }).addTo(map);
+
+  // ── Draw ──
+  const drawnItems = new L.FeatureGroup();
+  map.addLayer(drawnItems);
+
+  const drawControl = new L.Control.Draw({
+    edit: { featureGroup: drawnItems },
+    draw: {
+      polygon: true,
+      rectangle: true,
+      polyline: false,
+      circle: false,
+      marker: false
+    }
+  });
+  map.addControl(drawControl);
+
+  let zones = [];
+  const layerMap = {};  // id -> leaflet layer
+
+  // ── Зоналарды жүктеу ──
+  fetch('zones.json')
+    .then(res => {
+      if (!res.ok) throw new Error('zones.json табылмады');
+      return res.json();
+    })
+    .then(data => {
+      zones = data;
+      renderZones(zones);
+      buildPanel(zones);
+      document.getElementById('zone-count').textContent = zones.length;
+
+      // Жүктеу экранын жасыру
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 400);
+
+      fitAllZones();
+    })
+    .catch(err => {
+      document.getElementById('loader').innerHTML =
+        `<h1 style="color:#ff6b6b">⚠ ${err.message}</h1>
+         <p style="color:#aaa;font-size:12px;margin-top:8px">zones.json файлы HTML-мен бір қалтада болуы керек</p>`;
+    });
+
+  // ── Зоналарды картаға салу ──
+  function renderZones(data) {
+    data.forEach((zone, i) => {
+      // GeoJSON координаталары [lng, lat] → Leaflet [lat, lng]
+      const latlngs = zone.coordinates[0].map(c => [c[1], c[0]]);
+
+      const layer = L.polygon(latlngs, {
+        color: '#63dcb4',
+        weight: 2,
+        fillColor: '#63dcb4',
+        fillOpacity: 0.15,
+        opacity: 0.85
+      });
+
+      // Аудан есептеу (Turf.js)
+      let areaText = '';
+      try {
+        const poly = turf.polygon(zone.coordinates);
+        const area = turf.area(poly);
+        areaText = area < 10000
+          ? `${area.toFixed(0)} м²`
+          : `${(area / 10000).toFixed(4)} га`;
+      } catch(e) {
+        areaText = '—';
+      }
+
+      // Орталық нүкте
+      const center = layer.getBounds().getCenter();
+
+      layer.bindPopup(`
+        <div class="popup-inner">
+          <div class="popup-title">Зона ${i + 1}</div>
+          <div class="popup-row">ID: <span>${zone.id}</span></div>
+          <div class="popup-row">Тип: <span>${zone.type}</span></div>
+          <div class="popup-row">Нүкте саны: <span>${zone.coordinates[0].length}</span></div>
+          <div class="popup-row">Ауданы: <span>${areaText}</span></div>
+          <div class="popup-row">Орталық: <span>${center.lat.toFixed(5)}, ${center.lng.toFixed(5)}</span></div>
+        </div>
+      `);
+
+      layer.on('mouseover', function() {
+        this.setStyle({ fillOpacity: 0.4, weight: 3, color: '#7fffd4' });
+      });
+      layer.on('mouseout', function() {
+        this.setStyle({ fillOpacity: 0.15, weight: 2, color: '#63dcb4' });
+      });
+
+      layer.addTo(map);
+      layerMap[zone.id] = layer;
+    });
+  }
+
+  // ── Панельді толтыру ──
+  function buildPanel(data) {
+    const list = document.getElementById('zone-list');
+    data.forEach((zone, i) => {
+      const item = document.createElement('div');
+      item.className = 'zone-item';
+      item.innerHTML = `
+        <div class="zone-dot"></div>
+        <div class="zone-label">Зона ${i + 1}</div>
+        <div class="zone-pts">${zone.coordinates[0].length} нүкте</div>
+      `;
+      item.onclick = () => {
+        const layer = layerMap[zone.id];
+        if (layer) {
+          map.fitBounds(layer.getBounds(), { maxZoom: 18 });
+          layer.openPopup();
+          layer.setStyle({ fillOpacity: 0.5, weight: 3, color: '#7fffd4' });
+          setTimeout(() => layer.setStyle({ fillOpacity: 0.15, weight: 2, color: '#63dcb4' }), 1500);
+        }
+      };
+      list.appendChild(item);
+    });
+  }
+
+  // ── Барлық зоналарға сыю ──
+  function fitAllZones() {
+    const layers = Object.values(layerMap);
+    if (layers.length === 0) return;
+    const group = L.featureGroup(layers);
+    map.fitBounds(group.getBounds(), { padding: [30, 30] });
+  }
+
+  // ── JSON жүктеу ──
+  function downloadJSON() {
+    const blob = new Blob([JSON.stringify(zones, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'zones.json';
+    a.click();
+  }
+
+  // ── Жаңа зона сызу ──
+  map.on(L.Draw.Event.CREATED, function(e) {
+    const layer = e.layer;
+    drawnItems.addLayer(layer);
+    const geo = layer.toGeoJSON();
+    const newZone = {
+      id: Date.now(),
+      type: geo.geometry.type,
+      coordinates: geo.geometry.coordinates
+    };
+    zones.push(newZone);
+    renderZones([newZone]);
+    buildPanel([newZone]);
+    document.getElementById('zone-count').textContent = zones.length;
+  });
+</script>
+
+</body>
+</html>
