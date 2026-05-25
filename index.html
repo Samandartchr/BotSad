@@ -10,9 +10,8 @@
 <link rel="stylesheet" href="style.css"/>
 
 <script type="importmap">{
-  "imports":{
-    "three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-    "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  "imports": {
+    "three": "./node_modules/three/build/three.module.js"
   }
 }
 </script>
@@ -25,7 +24,24 @@
   <header id="app-header">
     <div class="hdr-brand">
       <span id="hdr-title">Ботаникалық бақ</span>
-      <span id="hdr-sub">Қ.А. Яссауи атындағы ХҚТУ</span>
+    </div>
+    <div class="hdr-controls">
+      <label class="hdr-control">
+        <span id="lang-label" class="hdr-control-label">Language</span>
+        <select id="lang-select" class="hdr-select" aria-label="Language">
+          <option value="kk">KAZ</option>
+          <option value="ru">RUS</option>
+          <option value="en">ENG</option>
+          <option value="tr">TUR</option>
+        </select>
+      </label>
+      <label class="hdr-control">
+        <span id="mode-label" class="hdr-control-label">Mode</span>
+        <select id="mode-select" class="hdr-select" aria-label="Mode">
+          <option value="2d">2D</option>
+          <option value="3d">3D</option>
+        </select>
+      </label>
     </div>
   </header>
 
@@ -72,6 +88,12 @@
 
     </div><!-- /viewport-area -->
 
+    <!-- RIGHT COLUMN: Info on desktop / stacked below viewport on mobile -->
+    <aside id="info-section">
+      <div id="panel-content"></div>
+      <div id="panel-footer"></div>
+    </aside>
+
     <!-- RIGHT COLUMN: Controls + Info (desktop 20%) / Mobile drawer -->
     <aside id="right-panel">
 
@@ -83,30 +105,6 @@
         <span style="font-size:11px;margin-right:auto;color:var(--text3);font-family:'Unbounded',sans-serif;letter-spacing:.05em">ЖАБУ</span>
       </button>
 
-      <!-- Language switcher -->
-      <div class="rp-section">
-        <div class="rp-section-label">Тіл / Язык</div>
-        <div class="lang-group">
-          <button class="lang-btn active" data-lang="kk">ҚАЗ</button>
-          <button class="lang-btn" data-lang="ru">РУС</button>
-          <button class="lang-btn" data-lang="en">ENG</button>
-          <button class="lang-btn" data-lang="tr">TUR</button>
-        </div>
-      </div>
-
-      <!-- View toggle: 2D / 3D -->
-      <div class="rp-section">
-        <div class="rp-section-label">Режим</div>
-        <div class="view-toggle">
-          <button id="btn-2d" class="tog-btn active">
-            <span class="tog-icon">🗺</span>2D
-          </button>
-          <button id="btn-3d" class="tog-btn">
-            <span class="tog-icon">🧊</span>3D
-          </button>
-        </div>
-      </div>
-
       <!-- Mobile-only: Zone list inside drawer -->
       <div id="mobile-zone-section" class="mobile-only" style="flex-direction:column;border-bottom:1px solid var(--border2);flex-shrink:0;max-height:38vh;display:none">
         <div class="zl-header">
@@ -114,12 +112,6 @@
           <span id="zone-count-badge-m" class="zone-count-badge"></span>
         </div>
         <div id="zone-list-m" class="zone-list-container" style="overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--border) transparent"></div>
-      </div>
-
-      <!-- Info section -->
-      <div id="info-section">
-        <div id="panel-content"></div>
-        <div id="panel-footer">ХҚТУ · Ботаникалық бақ</div>
       </div>
 
     </aside><!-- /right-panel -->
