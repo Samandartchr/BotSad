@@ -1,7 +1,7 @@
 import { MAP_2D_TO_3D } from './data/zones.js';
 
 export function create2dMap({ zonesData, selectZone, getSelectedZoneId, displayId }) {
-  const leafMap = L.map('map', {zoomControl:true}).setView([43.298, 68.302], 15);
+  const leafMap = L.map('map', {zoomControl:false}).setView([43.298, 68.302], 15);
   
   L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { attribution:'Google', maxZoom:20 }).addTo(leafMap);
   

@@ -4,7 +4,7 @@
   --accent:#5de8af;--accent2:#3bba88;--accentd:#1a4f36;
   --text:#ddf0e7;--text2:#7aaa8e;--text3:#3a6a50;
   --border:rgba(93,232,175,.13);--border2:rgba(93,232,175,.08);
-  --hh:52px;--left-w:10%;--right-w:20%;
+  --hh:52px;--left-w:15%;--right-w:20%;
   --ub:'Unbounded',sans-serif;
 }
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}
@@ -76,7 +76,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 /* BACK BUTTON */
 #back-btn{
-  position:absolute;top:12px;right:12px;z-index:1100;
+  position:absolute;top:12px;left:12px;z-index:1100;
   display:none;align-items:center;gap:6px;
   padding:7px 13px 7px 10px;
   background:rgba(13,26,19,.92);border:1px solid var(--border);border-radius:20px;
@@ -197,7 +197,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   #mobile-overlay.show{opacity:1;pointer-events:all}
   #mobile-menu-btn{
     display:flex!important;align-items:center;justify-content:center;
-    position:fixed;bottom:14px;right:0;width:30px;height:54px;
+    position:fixed;top:calc(var(--hh) + 14px);right:0;width:30px;height:54px;
     background:rgba(13,26,19,.96);color:var(--accent);
     border:1px solid var(--border);border-right:none;border-radius:14px 0 0 14px;
     font-family:var(--ub);font-size:18px;font-weight:700;line-height:1;

@@ -1,17 +1,39 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": ".",
     "ignore": ["firebase.json", "**/.*"],
     "headers": [
       {
+        "source": "**/*.html",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache" }
+        ]
+      },
+      {
+        "source": "**/*.css",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache" }
+        ]
+      },
+      {
+        "source": "**/*.js",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache" }
+        ]
+      },
+      {
+        "source": "**/*.json",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache" }
+        ]
+      },
+      {
         "source": "**/*.glb",
         "headers": [
-          { "key": "Content-Type", "value": "model/gltf-binary" }
+          { "key": "Content-Type", "value": "model/gltf-binary" },
+          { "key": "Cache-Control", "value": "no-cache" }
         ]
       }
-    ],
-    "rewrites": [
-      { "source": "**", "destination": "/index.html" }
     ]
   }
 }

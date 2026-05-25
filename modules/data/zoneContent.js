@@ -115,19 +115,19 @@ export const CUSTOM_ZONE_DATA = {
       plants: '35',
     },
     ru: {
-      name: 'Зона 21: Кустарниковый сад',
+      name: 'Зона 2.1: Кустарниковый сад',
       desc: 'Коллекция декоративных кустарников. Выращиваются виды шиповника, боярышника, сирени, жасмина. Осенняя окраска особенно впечатляет.',
       type: 'Коллекция кустарников',
       plants: '35',
     },
     en: {
-      name: 'Zone 21: Shrub Garden',
+      name: 'Zone 2.1: Shrub Garden',
       desc: 'Collection of ornamental shrubs. Species of rose hip, hawthorn, lilac, and jasmine are cultivated. Autumn coloration is especially impressive.',
       type: 'Shrub Collection',
       plants: '35',
     },
     tr: {
-      name: 'Bölge 21: Çalı Bahçesi',
+      name: 'Bölge 2.1: Çalı Bahçesi',
       desc: "Süs çalılarının koleksiyonu. Kuşburnu, alıç, leylak ve yasemin türleri yetiştirilmektedir. Sonbahar renklenmesi özellikle etkileyicidir.",
       type: 'Çalı Koleksiyonu',
       plants: '35',
@@ -433,25 +433,25 @@ export const CUSTOM_ZONE_DATA = {
 
   '131': {
     kk: {
-      name: '13а-зона: Сирек кездесетін өсімдіктер',
+      name: '13.1-зона: Сирек кездесетін өсімдіктер',
       desc: 'Қорғауға алынған және сирек кездесетін өсімдіктердің коллекциясы. Қазақстанның Қызыл кітабына енген түрлер сақталады. Репродукция және реинтродукция бағдарламалары жүргізіледі.',
       type: 'Қорғалатын түрлер',
       plants: '28',
     },
     ru: {
-      name: 'Зона 13а: Редкие растения',
+      name: 'Зона 13.1: Редкие растения',
       desc: 'Коллекция охраняемых и редких растений. Сохраняются виды, занесённые в Красную книгу Казахстана. Ведутся программы размножения и реинтродукции.',
       type: 'Охраняемые виды',
       plants: '28',
     },
     en: {
-      name: 'Zone 13a: Rare Plants',
+      name: 'Zone 13.1: Rare Plants',
       desc: 'Collection of protected and rare plants. Species listed in the Red Book of Kazakhstan are preserved. Reproduction and reintroduction programs are being conducted.',
       type: 'Protected Species',
       plants: '28',
     },
     tr: {
-      name: 'Bölge 13a: Nadir Bitkiler',
+      name: 'Bölge 13.1: Nadir Bitkiler',
       desc: "Korunan ve nadir bitkilerin koleksiyonu. Kazakistan Kırmızı Kitabı'na giren türler korunmaktadır. Üreme ve yeniden tanıtım programları yürütülmektedir.",
       type: 'Korunan Türler',
       plants: '28',
@@ -487,25 +487,25 @@ export const CUSTOM_ZONE_DATA = {
 
   '141': {
     kk: {
-      name: '14а-зона: Шырынды жемістер',
+      name: '14.1-зона: Шырынды жемістер',
       desc: 'Облепиха, ирга, арония, барбарис сияқты жабайы жеміс бұталарының коллекциясы. Дәрілік қасиеттері жоғары витаминді өсімдіктер зерттеледі.',
       type: 'Жидек коллекциясы',
       plants: '32',
     },
     ru: {
-      name: 'Зона 14а: Ягодные кустарники',
+      name: 'Зона 14.1: Ягодные кустарники',
       desc: 'Коллекция дикоплодных кустарников: облепиха, ирга, арония, барбарис. Изучаются витаминоносные растения с высокими лечебными свойствами.',
       type: 'Ягодная коллекция',
       plants: '32',
     },
     en: {
-      name: 'Zone 14a: Berry Shrubs',
+      name: 'Zone 14.1: Berry Shrubs',
       desc: 'Collection of wild fruit shrubs: sea buckthorn, serviceberry, chokeberry, barberry. Vitamin-rich plants with high medicinal properties are studied.',
       type: 'Berry Collection',
       plants: '32',
     },
     tr: {
-      name: 'Bölge 14a: Meyve Çalıları',
+      name: 'Bölge 14.1: Meyve Çalıları',
       desc: 'Yabani meyve çalılarının koleksiyonu: yalancı zeytin, ırmak meşesi, karaüzüm, kadınparmağı. Yüksek tıbbi özelliklere sahip vitamin açısından zengin bitkiler incelenmektedir.',
       type: 'Meyve Koleksiyonu',
       plants: '32',
@@ -676,25 +676,25 @@ export const CUSTOM_ZONE_DATA = {
 
   '21_1': {
     kk: {
-      name: '21б-зона: Жаздыгүн мектебі',
+      name: '21-зона: Жаздыгүн мектебі',
       desc: 'Оқушылар мен студенттерге арналған оқу-тәжірибе учаскесі. Көкөніс, гүл және ағаш өсіру тәжірибелері жүргізіледі. Мектеп экскурсиялары үшін арнайы бағдарлама бар.',
       type: 'Оқу учаскесі',
       plants: '60',
     },
     ru: {
-      name: 'Зона 21б: Учебный сад',
+      name: 'Зона 21: Учебный сад',
       desc: 'Учебно-опытный участок для школьников и студентов. Проводятся опыты по выращиванию овощей, цветов и деревьев. Есть специальная программа для школьных экскурсий.',
       type: 'Учебный участок',
       plants: '60',
     },
     en: {
-      name: 'Zone 21b: Teaching Garden',
+      name: 'Zone 21: Teaching Garden',
       desc: 'Educational and experimental plot for schoolchildren and students. Experiments in growing vegetables, flowers, and trees are conducted. A special program for school excursions is available.',
       type: 'Teaching Plot',
       plants: '60',
     },
     tr: {
-      name: 'Bölge 21b: Öğretim Bahçesi',
+      name: 'Bölge 21: Öğretim Bahçesi',
       desc: 'Okul çocukları ve öğrenciler için eğitim ve deneysel parsel. Sebze, çiçek ve ağaç yetiştirme deneyleri yapılmaktadır. Okul gezileri için özel program mevcuttur.',
       type: 'Öğretim Parseli',
       plants: '60',
@@ -784,25 +784,25 @@ export const CUSTOM_ZONE_DATA = {
 
   '241': {
     kk: {
-      name: '24а-зона: Дала флорасы',
+      name: '24.1-зона: Дала флорасы',
       desc: 'Қазақстан даласына тән өсімдіктер коллекциясы. Бетеге, ковыль, типшан, жусан, боз шалғын түрлері ұсынылған. Далалық экожүйенің тарихи маңыздылығы туралы ақпарат бар.',
       type: 'Дала экожүйесі',
       plants: '55',
     },
     ru: {
-      name: 'Зона 24а: Степная флора',
+      name: 'Зона 24.1: Степная флора',
       desc: 'Коллекция растений, характерных для казахстанской степи. Представлены ковыль, типчак, полынь, тонконог, бескильница. Есть информация об историческом значении степных экосистем.',
       type: 'Степная экосистема',
       plants: '55',
     },
     en: {
-      name: 'Zone 24a: Steppe Flora',
+      name: 'Zone 24.1: Steppe Flora',
       desc: 'Collection of plants characteristic of the Kazakhstan steppe. Feather grass, fescue, wormwood, and blue grama are represented. Information on the historical significance of steppe ecosystems is provided.',
       type: 'Steppe Ecosystem',
       plants: '55',
     },
     tr: {
-      name: 'Bölge 24a: Bozkır Florası',
+      name: 'Bölge 24.1: Bozkır Florası',
       desc: "Kazakistan bozkırına özgü bitkilerin koleksiyonu. Kılıç otu, kırmızı yumak, pelin ve mavi çimen temsil edilmektedir. Bozkır ekosistemlerinin tarihsel önemi hakkında bilgi sunulmaktadır.",
       type: 'Bozkır Ekosistemi',
       plants: '55',
@@ -838,25 +838,25 @@ export const CUSTOM_ZONE_DATA = {
 
   '251': {
     kk: {
-      name: '25а-зона: Жәндіктер мекені',
+      name: '25.1-зона: Жәндіктер мекені',
       desc: 'Жабайы жәндіктер үшін арнайы жасалған мекен аймағы. Аралар, көбелектер, шегірткелер үшін гүл алаңдары мен баспаналар бар. Биоәртүрлілікті сақтауға бағытталған жоба.',
       type: 'Экологиялық мекен',
       plants: '40',
     },
     ru: {
-      name: 'Зона 25а: Среда обитания насекомых',
+      name: 'Зона 25.1: Среда обитания насекомых',
       desc: 'Специально созданная зона обитания для диких насекомых. Есть цветники и укрытия для пчёл, бабочек, кузнечиков. Проект по сохранению биоразнообразия.',
       type: 'Экологическое местообитание',
       plants: '40',
     },
     en: {
-      name: 'Zone 25a: Insect Habitat',
+      name: 'Zone 25.1: Insect Habitat',
       desc: 'Specially created habitat zone for wild insects. Flower beds and shelters for bees, butterflies, and grasshoppers are available. A biodiversity conservation project.',
       type: 'Ecological Habitat',
       plants: '40',
     },
     tr: {
-      name: 'Bölge 25a: Böcek Habitatı',
+      name: 'Bölge 25.1: Böcek Habitatı',
       desc: 'Yabani böcekler için özel olarak oluşturulan yaşam alanı. Arılar, kelebekler ve çekirgeler için çiçek tarhları ve barınaklar mevcuttur. Biyoçeşitliliği koruma projesi.',
       type: 'Ekolojik Habitat',
       plants: '40',
