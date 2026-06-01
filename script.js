@@ -1,5 +1,4 @@
 import { UI } from './modules/data/ui.js';
-import { displayId } from './modules/data/zones.js';
 import { createMobileDrawer } from './modules/mobileDrawer.js';
 import { create2dMap } from './modules/map2d.js';
 import { create3dScene } from './modules/scene3d.js';
@@ -19,7 +18,6 @@ const map2d = create2dMap({
   zonesData,
   selectZone,
   getSelectedZoneId: () => selectedZoneId,
-  displayId,
 });
 const scene3d = create3dScene({
   modelUrl,

@@ -36,6 +36,7 @@ export function logModelStructure(scene3d) {
 
   const expectedZoneNames = new Set([
     'cont', 'okr',
+    'kanal', 'tamshy', 'skvaj', 'bochk', 'joldar', 'meteo', 'tseh', 'shiporez', 'jylyjai',
     ...Array.from({ length: 48 }, (_, i) => String(i + 1)),
     '131', '141', '241', '251', '21_1',
   ]);

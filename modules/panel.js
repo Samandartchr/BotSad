@@ -1,5 +1,5 @@
 import { UI } from './data/ui.js';
-import { ZONE_DATA, displayId } from './data/zones.js';
+import { ZONE_DATA, displayZoneDescription, displayZoneName } from './data/zones.js';
 
 export function renderPanel({ currentLang, selectedZoneId }){
   const t  = UI[currentLang];
@@ -27,15 +27,14 @@ export function renderPanel({ currentLang, selectedZoneId }){
     if(!zd) return;
     const icon = /^\d/.test(selectedZoneId) ? '🌱' : '🌿';
     el.innerHTML = `
-      <div class="p-tag">🗺 ${t.zone_tag} ${displayId(selectedZoneId)}</div>
-      <div class="p-title">${zd.name}</div>
+      <div class="p-tag">🗺 ${t.zone_tag}</div>
+      <div class="p-title">${displayZoneName(zd.name)}</div>
       <div class="p-subtitle">${t.gen_sub}</div>
       <div class="p-img"><span class="p-img-icon">${icon}</span></div>
-      <div class="p-desc">${zd.desc}</div>
+      <div class="p-desc">${displayZoneDescription(zd.desc)}</div>
       <div class="p-props">
         <div class="prop-row"><span class="prop-key">${t.type_l}</span><span class="prop-val">${zd.type}</span></div>
         <div class="prop-row"><span class="prop-key">${t.plants_l}</span><span class="prop-val">${zd.plants}</span></div>
-        <div class="prop-row"><span class="prop-key">ID</span><span class="prop-val">${displayId(selectedZoneId)}</span></div>
       </div>`;
   }
   document.getElementById('panel-footer').textContent = t.footer;

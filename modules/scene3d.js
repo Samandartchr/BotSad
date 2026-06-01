@@ -60,8 +60,8 @@ export function create3dScene({ modelUrl, selectZone, getCurrentMode }) {
     new THREE.Vector2(canvasView.clientWidth||800, canvasView.clientHeight||600),
     scene3d, camera3d
   );
-  outlinePass.edgeStrength=3.5; outlinePass.edgeGlow=0.4; outlinePass.edgeThickness=1.5;
-  outlinePass.visibleEdgeColor.set('#ffffff'); outlinePass.hiddenEdgeColor.set('#555');
+  outlinePass.edgeStrength=3; outlinePass.edgeGlow=0.4; outlinePass.edgeThickness=2;
+  outlinePass.visibleEdgeColor.set('#00ff1a'); outlinePass.hiddenEdgeColor.set('#26ff00');
   composer.addPass(outlinePass);
   const fxaaPass = new ShaderPass(FXAAShader);
   composer.addPass(fxaaPass);
@@ -153,6 +153,7 @@ export function create3dScene({ modelUrl, selectZone, getCurrentMode }) {
           c.receiveShadow = true;
   
           c.frustumCulled = false;
+          c.renderOrder = 0;
   
           const mats = Array.isArray(c.material)
             ? c.material
@@ -162,6 +163,10 @@ export function create3dScene({ modelUrl, selectZone, getCurrentMode }) {
             m.side = THREE.DoubleSide;
             m.alphaTest = 0.5;
             m.transparent = false;
+            m.depthTest = true;
+            m.depthWrite = true;
+            m.blending = THREE.NormalBlending;
+            m.needsUpdate = true;
           });
   
         }

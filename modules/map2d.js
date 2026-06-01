@@ -1,6 +1,6 @@
 import { MAP_2D_TO_3D } from './data/zones.js';
 
-export function create2dMap({ zonesData, selectZone, getSelectedZoneId, displayId }) {
+export function create2dMap({ zonesData, selectZone, getSelectedZoneId }) {
   const leafMap = L.map('map', {zoomControl:false}).setView([43.298, 68.302], 15);
   
   L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { attribution:'Google', maxZoom:20 }).addTo(leafMap);
@@ -10,7 +10,6 @@ export function create2dMap({ zonesData, selectZone, getSelectedZoneId, displayI
   const S_ACTIVE = {color:'#ffffff',weight:2.5,fillColor:'#5de8af',fillOpacity:0.28,opacity:1};
   
   const leafLayers = {};
-  const labelMarkers = [];
   
   function load2dZones() {
     zonesData.forEach(zone => {
@@ -32,31 +31,6 @@ export function create2dMap({ zonesData, selectZone, getSelectedZoneId, displayI
       poly.addTo(leafMap);
       leafLayers[jsonId] = poly;
   
-      if (id3d) {
-        const center = poly.getBounds().getCenter();
-        const m = L.marker(center, {
-          icon: L.divIcon({
-            className: '',
-            html: `<div class="zone-lbl">${displayId(id3d)}</div>`,
-            iconAnchor: [10, 8],
-          }),
-          interactive: false,
-          zIndexOffset: -100,
-        });
-        m.addTo(leafMap);
-        labelMarkers.push(m);
-      }
-    });
-  
-    leafMap.on('zoomend', updateLabelVisibility);
-    updateLabelVisibility();
-  }
-  
-  function updateLabelVisibility(){
-    const z = leafMap.getZoom();
-    labelMarkers.forEach(m=>{
-      const el = m.getElement();
-      if(el) el.style.display = z >= 16 ? 'block' : 'none';
     });
   }
   

@@ -1,4 +1,4 @@
-import { ZONE_DATA, ZONE_ORDER, displayId } from './data/zones.js';
+import { ZONE_DATA, ZONE_ORDER, displayZoneName } from './data/zones.js';
 
 export function buildZoneList({
   currentLang,
@@ -30,7 +30,7 @@ export function buildZoneList({
       const item = document.createElement('div');
       item.className = 'zl-item' + (id === selectedZoneId ? ' active' : '');
       item.dataset.zoneId = id;
-      item.innerHTML = `<span class="zl-num">${displayId(id)}</span><span class="zl-name">${zd.name}</span>`;
+      item.innerHTML = `<span class="zl-name">${displayZoneName(zd.name)}</span>`;
       item.addEventListener('click', () => {
         selectZone(id, 'list');
         if (currentMode === '2d') panTo2d(id);
