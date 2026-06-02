@@ -30,7 +30,7 @@ export function create3dScene({ modelUrl, selectZone, getCurrentMode }) {
   scene3d.background = new THREE.Color(0x1b2b24);
   scene3d.fog = new THREE.Fog(0x030806, 80, 250);
   
-  const camera3d = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+  const camera3d = new THREE.PerspectiveCamera(90, 1, 0.01, 1000);
   const initCamPos = new THREE.Vector3(0, 20, 40);
   camera3d.position.copy(initCamPos);
   

@@ -1160,570 +1160,562 @@ export const CUSTOM_ZONE_DATA = {
     },
   },
 
-  '28': {
-    kk: {
-      name: '28-зона: Орман массиві — батыс',
-      desc: 'Жасанды отырғызылған орман массивінің батыс бөлімі. Ескі терек, қарағай, қайың ормандары бар. Жергілікті жабайы жануарларға мекен болады.',
-      type: 'Орман массиві',
-      plants: '30 түр',
-    },
-    ru: {
-      name: 'Зона 28: Лесной массив — запад',
-      desc: 'Западная часть искусственно посаженного лесного массива. Представлены старые рощи тополей, сосен, берёз. Служит местообитанием для местной дикой фауны.',
-      type: 'Лесной массив',
-      plants: '30 видов',
-    },
-    en: {
-      name: 'Zone 28: Forest Area — West',
-      desc: 'Western section of the artificially planted forest area. Old groves of poplars, pines, and birches are represented. Serves as a habitat for local wildlife.',
-      type: 'Forest Area',
-      plants: '30 species',
-    },
-    tr: {
-      name: 'Bölge 28: Orman Kütlesi — Batı',
-      desc: 'Yapay olarak dikilmiş orman kütlesinin batı bölümü. Eski kavak, çam ve huş koruları temsil edilmektedir. Yerel yaban yaşamı için habitat görevi görmektedir.',
-      type: 'Orman Kütlesi',
-      plants: '30 tür',
-    },
-  },
+'28': {
+kk: {
+name: '28-аймақ',
+desc: 'Бұл аймақта долана ағаштары және бос аймақтар бар. Аймақ табиғи арна арқылы суарылады.',
+type: 'Микс',
+plants: '50+',
+},
+ru: {
+name: 'Зона 28',
+desc: 'В этой зоне представлены деревья боярышника и свободные участки. Зона орошается через естественный канал.',
+type: 'Микс',
+plants: '50+',
+},
+en: {
+name: 'Zone 28',
+desc: 'This zone features hawthorn trees and free planting areas. The zone is irrigated through a natural channel.',
+type: 'Mix',
+plants: '50+',
+},
+tr: {
+name: 'Bölge 28',
+desc: 'Bu bölgede alıç ağaçları ve boş alanlar bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+type: 'Karışık',
+plants: '50+',
+},
+},
 
-  '29': {
-    kk: {
-      name: '29-зона: Орман массиві — шығыс',
-      desc: 'Жасанды отырғызылған орман массивінің шығыс бөлімі. Ауа-тазарту және шу оқшаулау функциясын атқарады. Серуен жолдары мен демалыс орындары бар.',
-      type: 'Орман массиві',
-      plants: '25 түр',
-    },
-    ru: {
-      name: 'Зона 29: Лесной массив — восток',
-      desc: 'Восточная часть искусственно посаженного лесного массива. Выполняет функцию очистки воздуха и шумоизоляции. Есть прогулочные дорожки и места отдыха.',
-      type: 'Лесной массив',
-      plants: '25 видов',
-    },
-    en: {
-      name: 'Zone 29: Forest Area — East',
-      desc: 'Eastern section of the artificially planted forest area. Performs the function of air purification and noise insulation. Walking paths and rest spots are available.',
-      type: 'Forest Area',
-      plants: '25 species',
-    },
-    tr: {
-      name: 'Bölge 29: Orman Kütlesi — Doğu',
-      desc: 'Yapay olarak dikilmiş orman kütlesinin doğu bölümü. Hava temizleme ve ses yalıtımı işlevi görmektedir. Yürüyüş yolları ve dinlenme alanları mevcuttur.',
-      type: 'Orman Kütlesi',
-      plants: '25 tür',
-    },
-  },
+'29': {
+kk: {
+name: '29-аймақ',
+desc: 'Өрік ағаштары. Бұл аймақта "Субхан" сұрыпты өрік ағаштары егілген. Аймақ аумағы 0.94 гектар және ол табиғи арна арқылы және тамшылатып суару жүйесі арқылы суарылады. Тамшылатып суару 14 қатарды құрайды және оның жалпы ұзындығы 2170 метр. Сондай-ақ аймақта 3 датчик және 1 су сақтайтын бөшке орналасқан.',
+type: 'Жеміс ағаштары',
+plants: '136',
+},
+ru: {
+name: 'Зона 29',
+desc: 'Деревья абрикоса. В этой зоне посажены абрикосы сорта "Субхан". Площадь зоны составляет 0.94 гектара, и она орошается через естественный канал и систему капельного полива. Система капельного полива состоит из 14 рядов общей длиной 2170 метров. Также в зоне расположены 3 датчика и 1 бочка для хранения воды.',
+type: 'Плодовые деревья',
+plants: '136',
+},
+en: {
+name: 'Zone 29',
+desc: 'Apricot trees. This zone features apricot trees of the "Subhan" variety. The area of the zone is 0.94 hectares and it is irrigated through a natural channel and a drip irrigation system. The drip irrigation system consists of 14 rows with a total length of 2170 meters. Additionally, 3 sensors and 1 water storage barrel are located in the zone.',
+type: 'Fruit Trees',
+plants: '136',
+},
+tr: {
+name: 'Bölge 29',
+desc: 'Kayısı ağaçları. Bu bölgede "Subhan" çeşidi kayısı ağaçları bulunmaktadır. Bölgenin alanı 0.94 hektardır ve doğal kanal ile damla sulama sistemi aracılığıyla sulanır. Damla sulama sistemi 14 sıradan oluşur ve toplam uzunluğu 2170 metredir. Ayrıca bölgede 3 sensör ve 1 su depolama varili bulunmaktadır.',
+type: 'Meyve Ağaçları',
+plants: '136',
+},
+},
 
-  '30': {
-    kk: {
-      name: '30-зона: Тас бақша',
-      desc: 'Ксерофит (суға төзімді) өсімдіктерден тұратын тас бақша. Аз суармалауды қажет ететін өсімдіктер демонстрацияланады. Тиімді су пайдалану тәжірибесіне арналған.',
-      type: 'Тас бақша',
-      plants: '52',
-    },
-    ru: {
-      name: 'Зона 30: Каменистый сад',
-      desc: 'Каменистый сад из ксерофитных (засухоустойчивых) растений. Демонстрируются растения, требующие минимального полива. Посвящён практике эффективного водопользования.',
-      type: 'Каменистый сад',
-      plants: '52',
-    },
-    en: {
-      name: 'Zone 30: Rock Garden',
-      desc: 'Rock garden of xerophytic (drought-resistant) plants. Plants requiring minimal watering are demonstrated. Dedicated to the practice of efficient water use.',
-      type: 'Rock Garden',
-      plants: '52',
-    },
-    tr: {
-      name: 'Bölge 30: Kaya Bahçesi',
-      desc: 'Kserofitik (kuraklığa dayanıklı) bitkilerden oluşan kaya bahçesi. Minimum sulama gerektiren bitkiler sergilenmektedir. Verimli su kullanımı pratiğine adanmıştır.',
-      type: 'Kaya Bahçesi',
-      plants: '52',
-    },
-  },
+'30': {
+kk: {
+name: '30-аймақ',
+desc: 'Өрік ағаштары. Бұл аймақта "Краснощекий Никитский" сұрыпты өрік ағаштары егілген. Аймақ аумағы 1.11 гектар және ол табиғи арна арқылы және тамшылатып суару жүйесі арқылы суарылады. Тамшылатып суару 22 қатарды құрайды және оның жалпы ұзындығы 3960 метр.',
+type: 'Жеміс ағаштары',
+plants: '250+',
+},
+ru: {
+name: 'Зона 30',
+desc: 'Деревья абрикоса. В этой зоне посажены абрикосы сорта "Краснощекий Никитский". Площадь зоны составляет 1.11 гектара, и она орошается через естественный канал и систему капельного полива. Система капельного полива состоит из 22 рядов общей длиной 3960 метров.',
+type: 'Плодовые деревья',
+plants: '250+',
+},
+en: {
+name: 'Zone 30',
+desc: 'Apricot trees. This zone features apricot trees of the "Krasnoshchekiy Nikitsky" variety. The area of the zone is 1.11 hectares and it is irrigated through a natural channel and a drip irrigation system. The drip irrigation system consists of 22 rows with a total length of 3960 meters.',
+type: 'Fruit Trees',
+plants: '250+',
+},
+tr: {
+name: 'Bölge 30',
+desc: 'Kayısı ağaçları. Bu bölgede "Krasnoshchekiy Nikitsky" çeşidi kayısı ağaçları bulunmaktadır. Bölgenin alanı 1.11 hektardır ve doğal kanal ile damla sulama sistemi aracılığıyla sulanır. Damla sulama sistemi 22 sıradan oluşur ve toplam uzunluğu 3960 metredir.',
+type: 'Meyve Ağaçları',
+plants: '250+',
+},
+},
 
-  '31': {
-    kk: {
-      name: '31-зона: Тропикалық өсімдіктер жасыл үйі',
-      desc: 'Тропикалық және субтропикалық климат өсімдіктеріне арналған жылы жасыл үй. Банан, финик пальмасы, манго өсімдіктері бар. Экзотикалық өсімдіктер туралы тематикалық экскурсиялар ұйымдастырылады.',
-      type: 'Жасыл үй',
-      plants: '150',
-    },
-    ru: {
-      name: 'Зона 31: Оранжерея тропических растений',
-      desc: 'Тёплая оранжерея для растений тропического и субтропического климата. Есть банан, финиковая пальма, манго. Организуются тематические экскурсии об экзотических растениях.',
-      type: 'Оранжерея',
-      plants: '150',
-    },
-    en: {
-      name: 'Zone 31: Tropical Plant Greenhouse',
-      desc: 'Warm greenhouse for plants of tropical and subtropical climates. Banana, date palm, and mango are available. Thematic excursions about exotic plants are organized.',
-      type: 'Greenhouse',
-      plants: '150',
-    },
-    tr: {
-      name: 'Bölge 31: Tropikal Bitki Serası',
-      desc: 'Tropikal ve subtropikal iklim bitkileri için sıcak sera. Muz, hurma palmiyesi ve mango mevcuttur. Egzotik bitkiler hakkında tematik turlar düzenlenmektedir.',
-      type: 'Sera',
-      plants: '150',
-    },
+'31': {
+  kk: {
+    name: '31-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
   },
+  ru: {
+    name: 'Зона 31',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
+  },
+  en: {
+    name: 'Zone 31',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
+  },
+  tr: {
+    name: 'Bölge 31',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
+  },
+},
+
+
+
+
 
   '32': {
-    kk: {
-      name: '32-зона: Сукуленттер мен кактустар',
-      desc: 'Сукуленттер, кактустар мен шөлейт зонасы өсімдіктерінің коллекциясы. 100-ден астам сукулент түрі бар. Су жинаудың ерекше механизмдері тқралы ақпарат ұсынылады.',
-      type: 'Сукулент коллекциясы',
-      plants: '100+',
-    },
-    ru: {
-      name: 'Зона 32: Суккуленты и кактусы',
-      desc: 'Коллекция суккулентов, кактусов и растений зоны пустыни. Более 100 видов суккулентов. Предоставляется информация об особых механизмах накопления воды.',
-      type: 'Коллекция суккулентов',
-      plants: '100+',
-    },
-    en: {
-      name: 'Zone 32: Succulents & Cacti',
-      desc: 'Collection of succulents, cacti, and desert zone plants. Over 100 succulent species. Information on special water storage mechanisms is provided.',
-      type: 'Succulent Collection',
-      plants: '100+',
-    },
-    tr: {
-      name: 'Bölge 32: Sukkulentler ve Kaktüsler',
-      desc: "Sukkulentlerin, kaktüslerin ve çöl bölgesi bitkilerinin koleksiyonu. 100'den fazla sukkulentik tür mevcuttur. Özel su depolama mekanizmaları hakkında bilgi sunulmaktadır.",
-      type: 'Sukkulentik Koleksiyonu',
-      plants: '100+',
-    },
+  kk: {
+    name: '32-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
   },
+  ru: {
+    name: 'Зона 32',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
+  },
+  en: {
+    name: 'Zone 32',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
+  },
+  tr: {
+    name: 'Bölge 32',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
+  },
+},
+'33': {
+kk: {
+name: '33-аймақ',
+desc: 'Бұл аймақта сәндік ағаштар мен қарақат өсімдіктері бар. Қарақат егілген аумақ 0.14 гектарды құрайды және өсімдік саны 42. Аймақ табиғи арна арқылы суарылады.',
+type: 'Микс',
+plants: '42+',
+},
+ru: {
+name: 'Зона 33',
+desc: 'В этой зоне представлены декоративные деревья и кусты смородины. Площадь участка со смородиной составляет 0.14 гектара, количество растений — 42. Зона орошается через естественный канал.',
+type: 'Микс',
+plants: '42+',
+},
+en: {
+name: 'Zone 33',
+desc: 'This zone features decorative trees and currant plants. The currant plantation covers 0.14 hectares and contains 42 plants. The zone is irrigated through a natural channel.',
+type: 'Mix',
+plants: '42+',
+},
+tr: {
+name: 'Bölge 33',
+desc: 'Bu bölgede süs ağaçları ve kuş üzümü bitkileri bulunmaktadır. Kuş üzümü ekili alanı 0.14 hektardır ve bitki sayısı 42’dir. Bölge doğal bir kanal aracılığıyla sulanır.',
+type: 'Karışık',
+plants: '42+',
+},
+},
+'34': {
+  kk: {
+    name: '34-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
+  },
+  ru: {
+    name: 'Зона 34',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
+  },
+  en: {
+    name: 'Zone 34',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
+  },
+  tr: {
+    name: 'Bölge 34',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
+  },
+},
+'35': {
+kk: {
+name: '35-аймақ',
+desc: 'Бұл аймақта сәндік ағаштар мен долана ағаштары бар. Аймақ табиғи арна арқылы суарылады.',
+type: 'Микс',
+plants: '50+',
+},
+ru: {
+name: 'Зона 35',
+desc: 'В этой зоне представлены декоративные деревья и деревья боярышника. Зона орошается через естественный канал.',
+type: 'Микс',
+plants: '50+',
+},
+en: {
+name: 'Zone 35',
+desc: 'This zone features decorative trees and hawthorn trees. The zone is irrigated through a natural channel.',
+type: 'Mix',
+plants: '50+',
+},
+tr: {
+name: 'Bölge 35',
+desc: 'Bu bölgede süs ağaçları ve alıç ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+type: 'Karışık',
+plants: '50+',
+},
+},
 
-  '33': {
-    kk: {
-      name: '33-зона: Бамбук бақшасы',
-      desc: 'Суыққа төзімді бамбук сорттарының эксперименттік коллекциясы. Солтүстік Қазақстан климатына бамбук бейімделуін зерттеу. Азиялық стиль элементтері бар.',
-      type: 'Эксперименттік коллекция',
-      plants: '8',
-    },
-    ru: {
-      name: 'Зона 33: Бамбуковый сад',
-      desc: 'Экспериментальная коллекция морозостойких сортов бамбука. Исследование адаптации бамбука к климату Северного Казахстана. Присутствуют элементы азиатского стиля.',
-      type: 'Экспериментальная коллекция',
-      plants: '8',
-    },
-    en: {
-      name: 'Zone 33: Bamboo Garden',
-      desc: 'Experimental collection of cold-hardy bamboo varieties. Research on bamboo adaptation to the Northern Kazakhstan climate. Asian style elements are present.',
-      type: 'Experimental Collection',
-      plants: '8',
-    },
-    tr: {
-      name: 'Bölge 33: Bambu Bahçesi',
-      desc: "Soğuğa dayanıklı bambu çeşitlerinin deneysel koleksiyonu. Bambuların Kuzey Kazakistan iklimine adaptasyonu araştırılmaktadır. Asya tarzı unsurlar mevcuttur.",
-      type: 'Deneysel Koleksiyon',
-      plants: '8',
-    },
-  },
+'36': {
+kk: {
+name: '36-аймақ',
+desc: 'Бұл аймақта сәндік ағаштар мен долана ағаштары бар. Аймақ табиғи арна арқылы суарылады.',
+type: 'Микс',
+plants: '50+',
+},
+ru: {
+name: 'Зона 36',
+desc: 'В этой зоне представлены декоративные деревья и деревья боярышника. Зона орошается через естественный канал.',
+type: 'Микс',
+plants: '50+',
+},
+en: {
+name: 'Zone 36',
+desc: 'This zone features decorative trees and hawthorn trees. The zone is irrigated through a natural channel.',
+type: 'Mix',
+plants: '50+',
+},
+tr: {
+name: 'Bölge 36',
+desc: 'Bu bölgede süs ağaçları ve alıç ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+type: 'Karışık',
+plants: '50+',
+},
+},
 
-  '34': {
-    kk: {
-      name: '34-зона: Тарихи өсімдіктер бақшасы',
-      desc: 'Тарихи және мәдени маңызды өсімдіктер коллекциясы. Ежелден қолданылатын дақылдар, рәміздік өсімдіктер мен фольклорда аталатын түрлер бар. Этноботаникалық білім берумен байланысты.',
-      type: 'Тематикалық бақ',
-      plants: '65',
-    },
-    ru: {
-      name: 'Зона 34: Сад исторических растений',
-      desc: 'Коллекция исторически и культурно значимых растений. Представлены издавна используемые культуры, символические растения и виды, упоминаемые в фольклоре. Связан с этноботаническим просвещением.',
-      type: 'Тематический сад',
-      plants: '65',
-    },
-    en: {
-      name: 'Zone 34: Historical Plants Garden',
-      desc: 'Collection of historically and culturally significant plants. Long-used crops, symbolic plants, and species mentioned in folklore are represented. Connected to ethnobotanical education.',
-      type: 'Themed Garden',
-      plants: '65',
-    },
-    tr: {
-      name: 'Bölge 34: Tarihi Bitkiler Bahçesi',
-      desc: "Tarihsel ve kültürel açıdan önemli bitkilerin koleksiyonu. Uzun süredir kullanılan kültürler, sembolik bitkiler ve folklorda adı geçen türler yer almaktadır. Etnobotanik eğitimle bağlantılıdır.",
-      type: 'Tematik Bahçe',
-      plants: '65',
-    },
-  },
+'37': {
+kk: {
+name: '37-аймақ',
+desc: 'Бұл аймақта сәндік ағаштар мен итмұрын өсімдіктері бар. Итмұрын егілген аумақ 0.1 гектарды құрайды және өсімдік саны 18. Аймақ табиғи арна арқылы суарылады.',
+type: 'Микс',
+plants: '18+',
+},
+ru: {
+name: 'Зона 37',
+desc: 'В этой зоне представлены декоративные деревья и кусты шиповника. Площадь участка с шиповником составляет 0.1 гектара, количество растений — 18. Зона орошается через естественный канал.',
+type: 'Микс',
+plants: '18+',
+},
+en: {
+name: 'Zone 37',
+desc: 'This zone features decorative trees and rosehip plants. The rosehip plantation covers 0.1 hectares and contains 18 plants. The zone is irrigated through a natural channel.',
+type: 'Mix',
+plants: '18+',
+},
+tr: {
+name: 'Bölge 37',
+desc: 'Bu bölgede süs ağaçları ve kuşburnu bitkileri bulunmaktadır. Kuşburnu ekili alanı 0.1 hektardır ve bitki sayısı 18’dir. Bölge doğal bir kanal aracılığıyla sulanır.',
+type: 'Karışık',
+plants: '18+',
+},
+},
 
-  '35': {
-    kk: {
-      name: '35-зона: Ароматты өсімдіктер',
-      desc: 'Хош иісті өсімдіктердің арнайы коллекциясы. Лаванда, жалбыз, мелисса, розмарин, тимьян, базилик түрлері өсіріледі. Ароматерапия мен хош иіс шыруаттарына арналған аймақ.',
-      type: 'Ароматты бақша',
-      plants: '38',
-    },
-    ru: {
-      name: 'Зона 35: Ароматические растения',
-      desc: 'Специальная коллекция ароматических растений. Выращиваются виды лаванды, мяты, мелиссы, розмарина, тимьяна, базилика. Зона для ароматерапии и получения эфирных масел.',
-      type: 'Ароматический сад',
-      plants: '38',
-    },
-    en: {
-      name: 'Zone 35: Aromatic Plants',
-      desc: 'Special collection of aromatic plants. Lavender, mint, lemon balm, rosemary, thyme, and basil varieties are cultivated. A zone for aromatherapy and essential oil production.',
-      type: 'Aromatic Garden',
-      plants: '38',
-    },
-    tr: {
-      name: 'Bölge 35: Aromatik Bitkiler',
-      desc: 'Aromatik bitkilerin özel koleksiyonu. Lavanta, nane, melisa, biberiye, kekik ve fesleğen türleri yetiştirilmektedir. Aromaterapi ve uçucu yağ üretimine yönelik bölge.',
-      type: 'Aromatik Bahçe',
-      plants: '38',
-    },
+'38': {
+  kk: {
+    name: '38-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
   },
+  ru: {
+    name: 'Зона 38',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
+  },
+  en: {
+    name: 'Zone 38',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
+  },
+  tr: {
+    name: 'Bölge 38',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
+  },
+},
+'39': {
+  kk: {
+    name: '39-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
+  },
+  ru: {
+    name: 'Зона 39',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
+  },
+  en: {
+    name: 'Zone 39',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
+  },
+  tr: {
+    name: 'Bölge 39',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
+  },
+},
+'40': {
+kk: {
+name: '40-аймақ',
+desc: 'Өрік ағаштары. Бұл аймақта "Самаркандский ранний" сұрыпты өрік ағаштары егілген. Аймақ аумағы 0.2 гектар және ол табиғи арна арқылы суарылады.',
+type: 'Жеміс ағаштары',
+plants: '41',
+},
+ru: {
+name: 'Зона 40',
+desc: 'Деревья абрикоса. В этой зоне посажены абрикосы сорта "Самаркандский ранний". Площадь зоны составляет 0.2 гектара, и она орошается через естественный канал.',
+type: 'Плодовые деревья',
+plants: '41',
+},
+en: {
+name: 'Zone 40',
+desc: 'Apricot trees. This zone features apricot trees of the "Samarkandskiy Ranniy" variety. The area of the zone is 0.2 hectares and it is irrigated through a natural channel.',
+type: 'Fruit Trees',
+plants: '41',
+},
+tr: {
+name: 'Bölge 40',
+desc: 'Kayısı ağaçları. Bu bölgede "Samarkandskiy Ranniy" çeşidi kayısı ağaçları bulunmaktadır. Bölgenin alanı 0.2 hektardır ve doğal bir kanal aracılığıyla sulanır.',
+type: 'Meyve Ağaçları',
+plants: '41',
+},
+},
+'41': {
+  kk: {
+    name: '41-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
+  },
+  ru: {
+    name: 'Зона 41',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
+  },
+  en: {
+    name: 'Zone 41',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
+  },
+  tr: {
+    name: 'Bölge 41',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
+  },
+},
+'42': {
+  kk: {
+    name: '42-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
+  },
+  ru: {
+    name: 'Зона 42',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
+  },
+  en: {
+    name: 'Zone 42',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
+  },
+  tr: {
+    name: 'Bölge 42',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
+  },
+},
+'43': {
+kk: {
+name: '43-аймақ',
+desc: 'Алма өрік ағаштары. Бұл аймақта алма өрік ағаштары өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+type: 'Жеміс ағаштары',
+plants: '50+',
+},
+ru: {
+name: 'Зона 43',
+desc: 'Деревья алма-урюк. В этой зоне выращиваются деревья алма-урюк. Зона орошается через естественный канал.',
+type: 'Плодовые деревья',
+plants: '50+',
+},
+en: {
+name: 'Zone 43',
+desc: 'Apple-apricot trees. This zone features apple-apricot trees. The zone is irrigated through a natural channel.',
+type: 'Fruit Trees',
+plants: '50+',
+},
+tr: {
+name: 'Bölge 43',
+desc: 'Elma-kayısı ağaçları. Bu bölgede elma-kayısı ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+type: 'Meyve Ağaçları',
+plants: '50+',
+},
+},
 
-  '36': {
-    kk: {
-      name: '36-зона: Тоған жүйесі',
-      desc: 'Ботаникалық бақтың суару жүйесіне қызмет ететін жасанды тоғандар тізбегі. Су өсімдіктері мен балық түрлері бар. Тоған жағасы серуен жолымен жабдықталған.',
-      type: 'Су нысаны',
-      plants: '20',
-    },
-    ru: {
-      name: 'Зона 36: Система прудов',
-      desc: 'Цепочка искусственных прудов, обслуживающих систему полива ботанического сада. Есть водные растения и виды рыб. Берег пруда оборудован прогулочной дорожкой.',
-      type: 'Водный объект',
-      plants: '20',
-    },
-    en: {
-      name: 'Zone 36: Pond System',
-      desc: 'A chain of artificial ponds serving the botanical garden irrigation system. Aquatic plants and fish species are present. The pond bank is equipped with a walking path.',
-      type: 'Water Feature',
-      plants: '20',
-    },
-    tr: {
-      name: 'Bölge 36: Gölet Sistemi',
-      desc: 'Botanik bahçesi sulama sistemine hizmet eden yapay göletler zinciri. Su bitkileri ve balık türleri mevcuttur. Gölet kıyısı yürüyüş yoluyla donatılmıştır.',
-      type: 'Su Özelliği',
-      plants: '20',
-    },
+'44': {
+kk: {
+name: '44-аймақ',
+desc: 'Қараөрік ағаштары. Бұл аймақта қараөрік ағаштары өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+type: 'Жеміс ағаштары',
+plants: '50+',
+},
+ru: {
+name: 'Зона 44',
+desc: 'Деревья сливы. В этой зоне выращиваются деревья сливы. Зона орошается через естественный канал.',
+type: 'Плодовые деревья',
+plants: '50+',
+},
+en: {
+name: 'Zone 44',
+desc: 'Plum trees. This zone features plum trees. The zone is irrigated through a natural channel.',
+type: 'Fruit Trees',
+plants: '50+',
+},
+tr: {
+name: 'Bölge 44',
+desc: 'Erik ağaçları. Bu bölgede erik ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+type: 'Meyve Ağaçları',
+plants: '50+',
+},
+},
+'45': {
+  kk: {
+    name: '45-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
   },
-
-  '37': {
-    kk: {
-      name: '37-зона: Фитонцидтік аймақ',
-      desc: 'Ауаны тазартатын және фитонцид бөлетін ағаштардың арнайы алаңдары. Шырша, арша, бальзамдық қарағай орналасқан. Денсаулықтыруды жақсарту мақсатымен жасалған рекреациялық зона.',
-      type: 'Рекреациялық зона',
-      plants: '18',
-    },
-    ru: {
-      name: 'Зона 37: Фитонцидная зона',
-      desc: 'Специальные насаждения деревьев, очищающих воздух и выделяющих фитонциды. Расположены ели, можжевельники, пихта бальзамическая. Рекреационная зона, созданная для улучшения самочувствия.',
-      type: 'Рекреационная зона',
-      plants: '18',
-    },
-    en: {
-      name: 'Zone 37: Phytoncide Zone',
-      desc: 'Special plantings of trees that purify the air and release phytoncides. Spruce, juniper, and balsam fir are located here. A recreational zone created to improve well-being.',
-      type: 'Recreational Zone',
-      plants: '18',
-    },
-    tr: {
-      name: 'Bölge 37: Fitonsit Bölgesi',
-      desc: 'Havayı temizleyen ve fitonsit salan ağaçların özel dikimi. Ladin, ardıç ve balzam köknarı burada yer almaktadır. Sağlığı geliştirmek amacıyla oluşturulan dinlenme bölgesi.',
-      type: 'Dinlenme Bölgesi',
-      plants: '18',
-    },
+  ru: {
+    name: 'Зона 45',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
   },
-
-  '38': {
-    kk: {
-      name: '38-зона: Ғылыми зертхана алаңы',
-      desc: 'Ботаникалық зерттеулер мен тәжірибелерге арналған ашық зертхана алаңы. Өсімдіктердің физиологиялық және биохимиялық зерттеулері жүргізіледі. Студенттер мен ғалымдар үшін жабдықталған.',
-      type: 'Ғылыми зона',
-      plants: '85',
-    },
-    ru: {
-      name: 'Зона 38: Площадка научной лаборатории',
-      desc: 'Площадка открытой лаборатории для ботанических исследований и опытов. Проводятся физиологические и биохимические исследования растений. Оборудована для студентов и учёных.',
-      type: 'Научная зона',
-      plants: '85',
-    },
-    en: {
-      name: 'Zone 38: Scientific Laboratory Area',
-      desc: 'Open laboratory area for botanical research and experiments. Physiological and biochemical studies of plants are conducted. Equipped for students and scientists.',
-      type: 'Scientific Zone',
-      plants: '85',
-    },
-    tr: {
-      name: 'Bölge 38: Bilim Laboratuvarı Alanı',
-      desc: 'Botanik araştırmaları ve deneyleri için açık laboratuvar alanı. Bitkilerin fizyolojik ve biyokimyasal incelemeleri yapılmaktadır. Öğrenciler ve bilim insanları için donatılmıştır.',
-      type: 'Bilimsel Bölge',
-      plants: '85',
-    },
+  en: {
+    name: 'Zone 45',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
   },
-
-  '39': {
-    kk: {
-      name: '39-зона: Жазғы амфитеатр',
-      desc: 'Ашық аспан астындағы концерттер, лекциялар мен іс-шараларға арналған амфитеатр. Жасыл декорациялармен қоршалған. Жазғы маусымда экологиялық және мәдени іс-шаралар өткізіледі.',
-      type: 'Рекреациялық нысан',
-      plants: '—',
-    },
-    ru: {
-      name: 'Зона 39: Летний амфитеатр',
-      desc: 'Амфитеатр для концертов, лекций и мероприятий под открытым небом. Окружён зелёными декорациями. В летний сезон проводятся экологические и культурные мероприятия.',
-      type: 'Рекреационный объект',
-      plants: '—',
-    },
-    en: {
-      name: 'Zone 39: Summer Amphitheatre',
-      desc: 'Amphitheatre for open-air concerts, lectures, and events. Surrounded by green decorations. Ecological and cultural events are held during the summer season.',
-      type: 'Recreational Facility',
-      plants: '—',
-    },
-    tr: {
-      name: 'Bölge 39: Yaz Amfitiyatrosu',
-      desc: 'Açık hava konserleri, dersler ve etkinlikler için amfitiyatro. Yeşil dekorasyonlarla çevrelenmiştir. Yaz sezonunda ekolojik ve kültürel etkinlikler düzenlenmektedir.',
-      type: 'Dinlenme Tesisi',
-      plants: '—',
-    },
+  tr: {
+    name: 'Bölge 45',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
   },
-
-  '40': {
-    kk: {
-      name: '40-зона: Метеорологиялық бекет',
-      desc: 'Бақтың климаттық жағдайларын бақылайтын метеорологиялық стансия. Температура, жауын-шашын, желдің деректері жиналады. Жергілікті микроклиматты зерттеу жүргізіледі.',
-      type: 'Ғылыми бекет',
-      plants: '—',
-    },
-    ru: {
-      name: 'Зона 40: Метеорологическая станция',
-      desc: 'Метеорологическая станция, следящая за климатическими условиями сада. Собираются данные о температуре, осадках, ветре. Ведётся исследование местного микроклимата.',
-      type: 'Научная станция',
-      plants: '—',
-    },
-    en: {
-      name: 'Zone 40: Meteorological Station',
-      desc: 'Meteorological station monitoring the climatic conditions of the garden. Temperature, precipitation, and wind data are collected. Local microclimate research is conducted.',
-      type: 'Scientific Station',
-      plants: '—',
-    },
-    tr: {
-      name: 'Bölge 40: Meteoroloji İstasyonu',
-      desc: "Bahçenin iklim koşullarını izleyen meteoroloji istasyonu. Sıcaklık, yağış ve rüzgar verileri toplanmaktadır. Yerel mikro-iklim araştırması yürütülmektedir.",
-      type: 'Bilim İstasyonu',
-      plants: '—',
-    },
+},
+'46': {
+  kk: {
+    name: '46-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
   },
-
-  '41': {
-    kk: {
-      name: '41-зона: Кіреберіс аллеясы',
-      desc: 'Ботаникалық бақтың негізгі кіреберісінен бастап созылатын сәулетті аллея. Маусымдық гүлдер мен декоративті бұталармен безендірілген. Бақтың визитті картасы.',
-      type: 'Аллея',
-      plants: '60',
-    },
-    ru: {
-      name: 'Зона 41: Входная аллея',
-      desc: 'Торжественная аллея, протянувшаяся от главного входа ботанического сада. Украшена сезонными цветами и декоративными кустарниками. Визитная карточка сада.',
-      type: 'Аллея',
-      plants: '60',
-    },
-    en: {
-      name: 'Zone 41: Entrance Alley',
-      desc: 'Ceremonial alley stretching from the main entrance of the botanical garden. Decorated with seasonal flowers and ornamental shrubs. The hallmark of the garden.',
-      type: 'Alley',
-      plants: '60',
-    },
-    tr: {
-      name: 'Bölge 41: Giriş Ağaçlığı',
-      desc: 'Botanik bahçesinin ana girişinden uzanan törensel ağaçlık. Mevsimlik çiçekler ve süs çalılarıyla süslenmiştir. Bahçenin simgesi.',
-      type: 'Ağaçlık',
-      plants: '60',
-    },
+  ru: {
+    name: 'Зона 46',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
   },
-
-  '42': {
-    kk: {
-      name: '42-зона: Балалар бақшасы',
-      desc: 'Балаларға арналған интерактивті бақша аймағы. Лабиринт, зооботаникалық белгілер, оқу алаңдары бар. Мектеп экскурсиялары мен отбасылық демалыс үшін өте қолайлы.',
-      type: 'Балалар аймағы',
-      plants: '45',
-    },
-    ru: {
-      name: 'Зона 42: Детский сад',
-      desc: 'Интерактивная садовая зона для детей. Есть лабиринт, зоботанические таблички, учебные площадки. Очень удобна для школьных экскурсий и семейного отдыха.',
-      type: 'Детская зона',
-      plants: '45',
-    },
-    en: {
-      name: 'Zone 42: Children\'s Garden',
-      desc: 'Interactive garden zone for children. A maze, zoo-botanical signs, and learning areas are available. Very suitable for school excursions and family recreation.',
-      type: 'Children\'s Zone',
-      plants: '45',
-    },
-    tr: {
-      name: 'Bölge 42: Çocuk Bahçesi',
-      desc: 'Çocuklar için etkileşimli bahçe bölgesi. Labirent, zoo-botanik tabelalar ve öğrenme alanları mevcuttur. Okul gezileri ve aile dinlencesi için çok uygundur.',
-      type: 'Çocuk Bölgesi',
-      plants: '45',
-    },
+  en: {
+    name: 'Zone 46',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
   },
-
-  '43': {
-    kk: {
-      name: '43-зона: Демалыс орны',
-      desc: 'Бақты зерттеушілер мен серуендеушілер үшін жабдықталған демалыс аймағы. Орындықтар, беседкалар, фонтандар бар. Жасыл ортаның тыныштықты береді.',
-      type: 'Демалыс аймағы',
-      plants: '—',
-    },
-    ru: {
-      name: 'Зона 43: Зона отдыха',
-      desc: 'Благоустроенная зона отдыха для исследователей сада и прогуливающихся. Есть скамейки, беседки, фонтаны. Зелёное окружение дарит умиротворение.',
-      type: 'Зона отдыха',
-      plants: '—',
-    },
-    en: {
-      name: 'Zone 43: Rest Area',
-      desc: 'A well-equipped rest area for garden researchers and strollers. Benches, gazebos, and fountains are available. The green surroundings provide tranquility.',
-      type: 'Rest Area',
-      plants: '—',
-    },
-    tr: {
-      name: 'Bölge 43: Dinlenme Alanı',
-      desc: 'Bahçe araştırmacıları ve gezginler için iyi donanımlı dinlenme alanı. Banklar, kameriyeler ve çeşmeler mevcuttur. Yeşil çevre huzur vermektedir.',
-      type: 'Dinlenme Alanı',
-      plants: '—',
-    },
+  tr: {
+    name: 'Bölge 46',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
   },
-
-  '44': {
-    kk: {
-      name: '44-зона: Жапондық бақша',
-      desc: 'Жапондық бақша жасау принциптеріне негізделген медитативті аймақ. Тас қою, балауыз суы, бонсай өсімдіктері бар. Дзен эстетикасы мен табиғатпен үйлесімге шақырады.',
-      type: 'Тематикалық бақ',
-      plants: '30',
-    },
-    ru: {
-      name: 'Зона 44: Японский сад',
-      desc: 'Медитативная зона, основанная на принципах японского садоводства. Есть каменные композиции, зеркальная вода, бонсай. Приглашает к гармонии с природой в эстетике дзен.',
-      type: 'Тематический сад',
-      plants: '30',
-    },
-    en: {
-      name: 'Zone 44: Japanese Garden',
-      desc: 'Meditative zone based on the principles of Japanese gardening. Stone compositions, mirror water, and bonsai are featured. Invites harmony with nature in Zen aesthetics.',
-      type: 'Themed Garden',
-      plants: '30',
-    },
-    tr: {
-      name: 'Bölge 44: Japon Bahçesi',
-      desc: "Japon bahçeciliği ilkelerine dayanan meditasyon bölgesi. Taş kompozisyonlar, ayna su ve bonsai yer almaktadır. Zen estetiğinde doğayla uyum davet etmektedir.",
-      type: 'Tematik Bahçe',
-      plants: '30',
-    },
+},
+'47': {
+  kk: {
+    name: '47-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
   },
-
-  '45': {
-    kk: {
-      name: '45-зона: Орта Азия бақшасы',
-      desc: 'Орта Азия мен Қазақстан флорасына тән өсімдіктер коллекциясы. Өрік, инжір, гранат, тут ағашы түрлері бар. Аймақтың ботаникалық мұрасын сақтайды.',
-      type: 'Тематикалық бақ',
-      plants: '55',
-    },
-    ru: {
-      name: 'Зона 45: Среднеазиатский сад',
-      desc: 'Коллекция растений, характерных для флоры Средней Азии и Казахстана. Представлены виды абрикоса, инжира, граната, тутовника. Сохраняет ботаническое наследие региона.',
-      type: 'Тематический сад',
-      plants: '55',
-    },
-    en: {
-      name: 'Zone 45: Central Asian Garden',
-      desc: 'Collection of plants typical of Central Asia and Kazakhstan flora. Apricot, fig, pomegranate, and mulberry species are represented. Preserves the botanical heritage of the region.',
-      type: 'Themed Garden',
-      plants: '55',
-    },
-    tr: {
-      name: 'Bölge 45: Orta Asya Bahçesi',
-      desc: "Orta Asya ve Kazakistan florasına özgü bitkilerin koleksiyonu. Kayısı, incir, nar ve dut türleri temsil edilmektedir. Bölgenin botanik mirasını korumaktadır.",
-      type: 'Tematik Bahçe',
-      plants: '55',
-    },
+  ru: {
+    name: 'Зона 47',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
   },
-
-  '46': {
-    kk: {
-      name: '46-зона: Еуропалық бақша',
-      desc: 'Еуропалық бақша стилінде жасалған рәсімдік партер. Геометриялық гүл тақталары, стриженые буксус мен туя бұталары бар. Классикалық бақша сәулетін демонстрациялайды.',
-      type: 'Рәсімдік бақ',
-      plants: '40',
-    },
-    ru: {
-      name: 'Зона 46: Европейский сад',
-      desc: 'Торжественный партер в европейском стиле садоводства. Есть геометрические цветники, стриженые кусты самшита и туи. Демонстрирует классическую садовую архитектуру.',
-      type: 'Регулярный сад',
-      plants: '40',
-    },
-    en: {
-      name: 'Zone 46: European Garden',
-      desc: 'Ceremonial parterre in the European gardening style. Geometric flower beds and trimmed boxwood and thuja bushes are featured. Demonstrates classic garden architecture.',
-      type: 'Formal Garden',
-      plants: '40',
-    },
-    tr: {
-      name: 'Bölge 46: Avrupa Bahçesi',
-      desc: "Avrupa bahçeciliği tarzında törensel parterr. Geometrik çiçek tarhları ve budanmış şimşir ile mazı çalıları yer almaktadır. Klasik bahçe mimarisini sergilemektedir.",
-      type: 'Biçimsel Bahçe',
-      plants: '40',
-    },
+  en: {
+    name: 'Zone 47',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
   },
-
-  '47': {
-    kk: {
-      name: '47-зона: Тұқымдар банкі',
-      desc: 'Өсімдік тұқымдарын ұзақ мерзімге сақтайтын криогендік тұқымдар банкі. Сирек кездесетін, эндемикалық және сынып кету қаупі бар өсімдіктер тұқымдары сақталады. Ұлттық генофондты қорғайды.',
-      type: 'Тұқымдар банкі',
-      plants: '500+ түр тұқымы',
-    },
-    ru: {
-      name: 'Зона 47: Семенной банк',
-      desc: 'Криогенный банк семян для долгосрочного хранения растений. Хранятся семена редких, эндемичных и находящихся под угрозой исчезновения растений. Сохраняет национальный генофонд.',
-      type: 'Семенной банк',
-      plants: '500+ видов семян',
-    },
-    en: {
-      name: 'Zone 47: Seed Bank',
-      desc: 'Cryogenic seed bank for long-term plant storage. Seeds of rare, endemic, and endangered plants are preserved. Protects the national gene pool.',
-      type: 'Seed Bank',
-      plants: '500+ seed species',
-    },
-    tr: {
-      name: 'Bölge 47: Tohum Bankası',
-      desc: 'Bitkilerin uzun süreli saklanması için kriyojenik tohum bankası. Nadir, endemik ve nesli tehlike altındaki bitkilerin tohumları saklanmaktadır. Ulusal gen havuzunu korumaktadır.',
-      type: 'Tohum Bankası',
-      plants: '500+ tohum türü',
-    },
+  tr: {
+    name: 'Bölge 47',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
   },
-
-  '48': {
-    kk: {
-      name: '48-зона: Әкімшілік орталық',
-      desc: 'Ботаникалық бақтың әкімшілік ғимараттары мен ғылыми зертханалары орналасқан орталық. Кітапхана, мұрағат, конференц-зал бар. Ботаникалық зерттеулердің координациялық орталығы.',
-      type: 'Инфрақұрылым',
-      plants: '—',
-    },
-    ru: {
-      name: 'Зона 48: Административный центр',
-      desc: 'Центр, где расположены административные здания и научные лаборатории ботанического сада. Есть библиотека, архив, конференц-зал. Координационный центр ботанических исследований.',
-      type: 'Инфраструктура',
-      plants: '—',
-    },
-    en: {
-      name: 'Zone 48: Administrative Center',
-      desc: 'Center housing the administrative buildings and scientific laboratories of the botanical garden. Library, archive, and conference hall are available. Coordination center for botanical research.',
-      type: 'Infrastructure',
-      plants: '—',
-    },
-    tr: {
-      name: 'Bölge 48: İdari Merkez',
-      desc: 'Botanik bahçesinin idari binaları ve bilimsel laboratuvarlarının bulunduğu merkez. Kütüphane, arşiv ve konferans salonu mevcuttur. Botanik araştırmalarının koordinasyon merkezi.',
-      type: 'Altyapı',
-      plants: '—',
-    },
+},
+'48': {
+  kk: {
+    name: '48-аймақ',
+    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік ағаштар',
+    plants: '300+',
   },
+  ru: {
+    name: 'Зона 48',
+    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
+    type: 'Декоративные деревья',
+    plants: '300+',
+  },
+  en: {
+    name: 'Zone 48',
+    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Trees',
+    plants: '300+',
+  },
+  tr: {
+    name: 'Bölge 48',
+    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Ağaçları',
+    plants: '300+',
+  },
+},
 };
