@@ -262,6 +262,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@turf/turf/turf.min.js"></script>
 
+<script type="module">
+  import('./modules/data/zoneContent.js')
+    .then(m => { window.ZONE_IMAGE_MANIFEST = m.ZONE_IMAGE_MANIFEST || m.default || {}; })
+    .catch(err => { console.warn('zoneContent import failed', err); window.ZONE_IMAGE_MANIFEST = window.ZONE_IMAGE_MANIFEST || {}; });
+</script>
+
 <script>
   // ── Карта ──
   const map = L.map('map').setView([43.2980, 68.3050], 14);
@@ -303,6 +309,7 @@
   map.addControl(drawControl);
 
   let zones = [];
+  let selectedZoneId = null;
   const layerMap = {};  // id -> leaflet layer
 
   // ── Зоналарды жүктеу ──
@@ -406,6 +413,7 @@
           <div class="popup-row">Орталық: <span>${centerText}</span></div>
           <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
             <button class="btn btn-secondary edit-zone" data-zone-id="${zone.id}">Edit</button>
+            <button class="btn btn-secondary edit-images" data-zone-id="${zone.id}">Images</button>
             <button class="btn btn-primary save-zone" data-zone-id="${zone.id}" style="display:none">Save</button>
           </div>
         </div>
@@ -424,9 +432,14 @@
         if (!popupEl) return;
         const editBtn = popupEl.querySelector('.edit-zone');
         const saveBtn = popupEl.querySelector('.save-zone');
+        const imagesBtn = popupEl.querySelector('.edit-images');
+
+        // mark current selection for manifest editor
+        selectedZoneId = zone.id;
 
         if (editBtn) editBtn.onclick = () => toggleEditZone(zone.id, this, editBtn, saveBtn);
         if (saveBtn) saveBtn.onclick = () => saveZone(zone.id, this, saveBtn, editBtn);
+        if (imagesBtn) imagesBtn.onclick = () => openManifestEditor(zone.id);
       });
 
       // store model name on the layer for later save operations
@@ -525,6 +538,7 @@
         <div class="zone-pts">${pts} нүкте</div>
       `;
       item.onclick = () => {
+        selectedZoneId = zone.id;
         const layer = layerMap[zone.id];
         if (layer) {
           if (layer.getBounds) map.fitBounds(layer.getBounds(), { maxZoom: 18 });
@@ -556,6 +570,71 @@
     a.click();
   }
 
+  // ── Zone content manifest editor helpers ──
+  function openManifestEditor(zoneId){
+    selectedZoneId = zoneId || selectedZoneId;
+    const modal = document.getElementById('manifest-editor');
+    const title = document.getElementById('manifest-editor-title');
+    const ta = document.getElementById('manifest-editor-text');
+    const manifest = window.ZONE_IMAGE_MANIFEST || {};
+    const arr = manifest[String(selectedZoneId)] || [];
+    title.textContent = `Images for ${selectedZoneId}`;
+    ta.value = arr.join('\n');
+    updatePreview(selectedZoneId);
+    modal.style.display = 'flex';
+  }
+
+  function closeManifestEditor(){
+    const modal = document.getElementById('manifest-editor');
+    if(modal) modal.style.display = 'none';
+  }
+
+  function updatePreview(zoneId){
+    const preview = document.getElementById('manifest-preview');
+    const ta = document.getElementById('manifest-editor-text');
+    if(!preview || !ta) return;
+    preview.innerHTML = '';
+    const lines = ta.value.split('\n').map(s=>s.trim()).filter(Boolean);
+    const base = `modules/data/zoneimg/${zoneId}/`;
+    lines.forEach(name=>{
+      const img = new Image();
+      img.style.width = '100%';
+      img.style.borderRadius = '6px';
+      img.src = base + name;
+      img.onerror = ()=>{ img.style.opacity = 0.45; img.alt = 'not found'; };
+      preview.appendChild(img);
+    });
+  }
+
+  function saveManifestFromEditor(){
+    const ta = document.getElementById('manifest-editor-text');
+    if(!ta) return;
+    const lines = ta.value.split('\n').map(s=>s.trim()).filter(Boolean);
+    window.ZONE_IMAGE_MANIFEST = window.ZONE_IMAGE_MANIFEST || {};
+    window.ZONE_IMAGE_MANIFEST[String(selectedZoneId)] = lines;
+    updatePreview(selectedZoneId);
+    alert('Manifest updated in-memory. Click Download to save file.');
+  }
+
+  function downloadManifest(){
+    const manifest = window.ZONE_IMAGE_MANIFEST || {};
+    const content = 'export const ZONE_IMAGE_MANIFEST = ' + JSON.stringify(manifest, null, 2) + ';\n\nexport default ZONE_IMAGE_MANIFEST;';
+    const blob = new Blob([content], { type: 'text/javascript' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'zoneContent.js';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 1500);
+  }
+
+  // wire modal buttons (delegated in case DOM not ready earlier)
+  document.addEventListener('click', function(e){
+    if(e.target && e.target.id === 'manifest-editor-close') closeManifestEditor();
+    if(e.target && e.target.id === 'manifest-save') saveManifestFromEditor();
+    if(e.target && e.target.id === 'manifest-download') downloadManifest();
+    if(e.target && e.target.id === 'manifest-editor-text') setTimeout(()=>updatePreview(selectedZoneId), 150);
+  });
+
   // ── Жаңа зона сызу ──
   map.on(L.Draw.Event.CREATED, function(e) {
     const layer = e.layer;
@@ -580,6 +659,30 @@
     document.getElementById('zone-count').textContent = zones.length;
   });
 </script>
+
+<!-- Manifest Editor Modal -->
+<div id="manifest-editor" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;z-index:100000;background:rgba(0,0,0,0.55)">
+  <div style="background:#071010;border:1px solid rgba(99,220,180,0.12);padding:14px;width:640px;max-width:calc(100% - 40px);border-radius:10px;color:#e0f0ea;box-shadow:0 10px 40px rgba(0,0,0,0.6)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <strong id="manifest-editor-title">Edit images</strong>
+      <button id="manifest-editor-close" class="btn btn-secondary" style="padding:6px 10px">Close</button>
+    </div>
+    <div style="display:flex;gap:12px">
+      <div style="flex:1">
+        <label style="font-size:12px;color:#63dcb4;display:block;margin-bottom:6px">Image filenames (one per line)</label>
+        <textarea id="manifest-editor-text" style="width:100%;height:200px;background:#060708;border:1px solid rgba(99,220,180,0.08);color:#e0f0ea;padding:8px;border-radius:6px"></textarea>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+          <button id="manifest-save" class="btn btn-primary">Save (update)</button>
+          <button id="manifest-download" class="btn btn-secondary">Download manifest</button>
+        </div>
+      </div>
+      <div style="width:220px">
+        <div style="font-size:12px;color:#63dcb4;margin-bottom:6px">Preview</div>
+        <div id="manifest-preview" style="display:flex;flex-direction:column;gap:8px;overflow:auto;max-height:260px;background:#061111;padding:8px;border-radius:6px"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

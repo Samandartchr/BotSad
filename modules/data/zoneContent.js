@@ -1,3 +1,15 @@
+// Zone image manifest
+// Keys: zone id or name (string)
+// Values: array of image file names (relative to modules/data/zoneimg/{zoneId}/)
+export const ZONE_IMAGE_MANIFEST = {
+  // Examples:
+  // '142': ['cover.jpg','1.jpg','2.jpg'],
+  // '49': ['cover.jpg'],
+  // 'kanal': ['kanal1.jpg','kanal2.jpg']
+  '1': ['1.png'],
+};
+
+export default ZONE_IMAGE_MANIFEST;
 export const CUSTOM_ZONE_DATA = {
   cont: {
     kk: {

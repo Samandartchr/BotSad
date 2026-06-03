@@ -123,6 +123,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .leaflet-container{background:#070e0b!important}
 .leaflet-control-layers{background:rgba(13,26,19,.95)!important;border:1px solid rgba(93,232,175,.2)!important;border-radius:8px!important;color:var(--text)!important}
 .leaflet-control-layers-selector{accent-color:var(--accent)}
+/* Zone images gallery in info panel */
+.zone-images{display:flex;gap:8px;overflow:auto;padding-top:8px}
+.zone-img-item{height:72px;border-radius:8px;border:1px solid rgba(93,232,175,.08);object-fit:cover}
 .leaflet-bar a{background:rgba(13,26,19,.95)!important;border-color:rgba(93,232,175,.2)!important;color:var(--accent)!important}
 .leaflet-bar a:hover{background:var(--bg3)!important}
 
