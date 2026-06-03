@@ -212,12 +212,79 @@ export function create3dScene({ modelUrl, selectZone, getCurrentMode }) {
     if(getCurrentMode()==='3d') composer.render();
   }
   animate();
-  
+  // Edge-mode: for some model names we prefer visible edges instead of the OutlinePass
+  const EDGE_MODEL_NAMES = new Set(['kanal','tamshy','joldar', 'skvaj','bochk','meteo']);
+  const edgesStore = new Map(); // obj.uuid -> [edgeMeshes]
+
+  function createEdgesForMesh(mesh){
+    try {
+      const geom = mesh.geometry;
+      if(!geom) return null;
+      const edgesGeom = new THREE.EdgesGeometry(geom);
+      const mat = new THREE.LineBasicMaterial({
+        color: 0x00ff1a,
+        linewidth: 1,
+        depthTest: false,
+        depthWrite: false,
+        transparent: true,
+        opacity: 1,
+      });
+      const lines = new THREE.LineSegments(edgesGeom, mat);
+      // Render on top of everything so edges remain visible through objects
+      lines.renderOrder = 99999;
+      // add as child so it follows mesh transforms
+      mesh.add(lines);
+      return lines;
+    } catch(e){
+      console.warn('createEdgesForMesh failed', e);
+      return null;
+    }
+  }
+
+  function enableEdgesForObject(obj){
+    if(!obj) return;
+    if(edgesStore.has(obj.uuid)) return; // already created
+    const created = [];
+    obj.traverse(c => {
+      if(c.isMesh){
+        const lines = createEdgesForMesh(c);
+        if(lines) created.push(lines);
+        // optionally disable outline by marking material.userData
+        c.userData._outlineDisabled = true;
+      }
+    });
+    if(created.length) edgesStore.set(obj.uuid, created);
+  }
+
+  function clearAllEdges(){
+    for(const [uuid, arr] of edgesStore.entries()){
+      for(const ls of arr){
+        if(ls.parent) ls.parent.remove(ls);
+        if(ls.geometry) ls.geometry.dispose();
+        if(ls.material) ls.material.dispose();
+      }
+    }
+    edgesStore.clear();
+  }
+
+  function setEdgeModelNames(names){
+    EDGE_MODEL_NAMES.clear();
+    for(const n of names||[]) EDGE_MODEL_NAMES.add(n);
+  }
+
     function setSelectedZoneObject(zoneId) {
       const obj = zoneId ? findZone3d(zoneId) : null;
-      outlinePass.selectedObjects = obj ? [obj] : [];
+      // clear any previous edges
+      clearAllEdges();
+      if(obj && EDGE_MODEL_NAMES.has(obj.name)){
+        // disable OutlinePass for this selection and show edges instead
+        outlinePass.selectedObjects = [];
+        enableEdgesForObject(obj);
+      } else {
+        outlinePass.selectedObjects = obj ? [obj] : [];
+      }
       return obj;
     }
   
-    return { onResize, findZone3d, focusOn, resetCam, setSelectedZoneObject };
+    return { onResize, findZone3d, focusOn, resetCam, setSelectedZoneObject, setEdgeModelNames };
 }

@@ -24,7 +24,7 @@
     /* ── Панель ── */
     #panel {
       position: fixed;
-      top: 16px;
+      top: 250px;
       left: 16px;
       z-index: 9999;
       width: 280px;
@@ -354,6 +354,10 @@
           <div class="popup-row">Нүкте саны: <span>${zone.coordinates[0].length}</span></div>
           <div class="popup-row">Ауданы: <span>${areaText}</span></div>
           <div class="popup-row">Орталық: <span>${center.lat.toFixed(5)}, ${center.lng.toFixed(5)}</span></div>
+          <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
+            <button class="btn btn-secondary edit-zone" data-zone-id="${zone.id}">Edit</button>
+            <button class="btn btn-primary save-zone" data-zone-id="${zone.id}" style="display:none">Save</button>
+          </div>
         </div>
       `);
 
@@ -364,9 +368,95 @@
         this.setStyle({ fillOpacity: 0.15, weight: 2, color: '#63dcb4' });
       });
 
+      // Attach popup button handlers when popup opens
+      layer.on('popupopen', function() {
+        const popupEl = this.getPopup().getElement();
+        if (!popupEl) return;
+        const editBtn = popupEl.querySelector('.edit-zone');
+        const saveBtn = popupEl.querySelector('.save-zone');
+
+        if (editBtn) editBtn.onclick = () => toggleEditZone(zone.id, this, editBtn, saveBtn);
+        if (saveBtn) saveBtn.onclick = () => saveZone(zone.id, this, saveBtn, editBtn);
+      });
+
       layer.addTo(map);
       layerMap[zone.id] = layer;
     });
+  }
+
+  // Toggle editing mode for a zone's layer
+  function toggleEditZone(zoneId, layer, editBtn, saveBtn) {
+    if (!layer) return;
+    const isEditing = layer.editing && layer.editing.enabled && layer.editing.enabled();
+    try {
+      if (!layer.editing || !layer.editing.enable) {
+        // Ensure layer is in drawnItems to allow editing
+        drawnItems.addLayer(layer);
+      }
+      if (!isEditing) {
+        layer.editing.enable();
+        editBtn.textContent = 'Cancel';
+        if (saveBtn) saveBtn.style.display = '';
+      } else {
+        layer.editing.disable();
+        editBtn.textContent = 'Edit';
+        if (saveBtn) saveBtn.style.display = 'none';
+      }
+    } catch (e) {
+      console.warn('Editing toggle failed', e);
+    }
+  }
+
+  // Save edited zone geometry into `zones` array and trigger download to overwrite
+  function saveZone(zoneId, layer, saveBtn, editBtn) {
+    if (!layer) return;
+    try {
+      // Ensure editing is stopped
+      if (layer.editing && layer.editing.enabled && layer.editing.enabled()) layer.editing.disable();
+
+      const geo = layer.toGeoJSON();
+      const idx = zones.findIndex(z => String(z.id) === String(zoneId));
+      const newZone = {
+        id: (zones[idx] && zones[idx].id) || zoneId,
+        type: geo.geometry.type,
+        coordinates: geo.geometry.coordinates
+      };
+
+      if (idx >= 0) {
+        zones[idx] = newZone;
+      } else {
+        zones.push(newZone);
+      }
+
+      // Update popup content count and visuals
+      const popup = layer.getPopup();
+      if (popup) {
+        const center = layer.getBounds().getCenter();
+        let areaText = '—';
+        try {
+          const poly = turf.polygon(newZone.coordinates);
+          const area = turf.area(poly);
+          areaText = area < 10000 ? `${area.toFixed(0)} м²` : `${(area / 10000).toFixed(4)} га`;
+        } catch (e) {}
+        const content = `\n          <div class="popup-inner">\n            <div class="popup-title">Зона</div>\n            <div class="popup-row">ID: <span>${newZone.id}</span></div>\n            <div class="popup-row">Тип: <span>${newZone.type}</span></div>\n            <div class="popup-row">Нүкте саны: <span>${newZone.coordinates[0].length}</span></div>\n            <div class="popup-row">Ауданы: <span>${areaText}</span></div>\n            <div class="popup-row">Орталық: <span>${center.lat.toFixed(5)}, ${center.lng.toFixed(5)}</span></div>\n            <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">\n              <button class="btn btn-secondary edit-zone" data-zone-id="${newZone.id}">Edit</button>\n              <button class="btn btn-primary save-zone" data-zone-id="${newZone.id}" style="display:none">Save</button>\n            </div>\n          </div>\n        `;
+        popup.setContent(content);
+      }
+
+      // Update panel - simple full rebuild
+      const list = document.getElementById('zone-list');
+      list.innerHTML = '';
+      buildPanel(zones);
+      document.getElementById('zone-count').textContent = zones.length;
+
+      // Trigger download to overwrite zones.json (user will need to replace file)
+      downloadJSON();
+
+      if (saveBtn) saveBtn.style.display = 'none';
+      if (editBtn) editBtn.textContent = 'Edit';
+    } catch (e) {
+      console.error('Failed to save zone', e);
+      alert('Сақтау сәтсіз аяқталды: ' + e.message);
+    }
   }
 
   // ── Панельді толтыру ──

@@ -1,7 +1,7 @@
 import { CUSTOM_ZONE_DATA } from './zoneContent.js';
 
 export const DISPLAY_ID = {
-  '21':'2.1','131':'13.1','141':'14.1','21_1':'21','241':'24.1','251':'25.1'
+  '21':'2.1','131':'13.1','141':'14.1','142':'14.2','21_1':'21','241':'24.1','251':'25.1'
 };
 export const displayId = id => DISPLAY_ID[id] ?? id;
 export const displayZoneName = name => String(name); //.replace(/^(?:(?:Zone|Зона|Bölge)\s+\d+(?:\.\d+)?:|\d+(?:\.\d+)?-зона:)\s*/iu, '');
@@ -26,6 +26,13 @@ ZONE_DATA['okr'] = {
   en:{name:'Perimeter',desc:'Outer boundary zone of the botanical garden.',type:'Boundary',plants:'—'},
   tr:{name:'Çevre Sınırı',desc:'Botanik bahçesinin dış sınır bölgesi.',type:'Sınır',plants:'—'},
 };
+// Default data for new subzone 14.2
+ZONE_DATA['142'] = {
+  kk: { name: `${displayId('142')}-зона`, desc: `${displayId('142')} — ботаникалық бақтың қосымша ішкі аймағы.`, type: 'Ішкі аймақ', plants: '-' },
+  ru: { name: `Зона ${displayId('142')}`, desc: `Зона ${displayId('142')} — дополнительная внутренняя подзона ботанического сада.`, type: 'Подзона', plants: '-' },
+  en: { name: `Zone ${displayId('142')}`, desc: `Zone ${displayId('142')} is an additional internal sub-zone of the botanical garden.`, type: 'Sub-zone', plants: '-' },
+  tr: { name: `Bölge ${displayId('142')}`, desc: `Bölge ${displayId('142')}, botanik bahçesinin ek iç alt bölgesidir.`, type: 'Alt bölge', plants: '-' },
+};
 for(const id of ['131','141','241','251','21_1']){
   const n=12+(parseInt(id)*3%30); const d=displayId(id);
   ZONE_DATA[id]={
@@ -45,6 +52,14 @@ for(let i=1;i<=48;i++){
   };
 }
 
+// Default data for new zone 49
+ZONE_DATA['49'] = {
+  kk: { name: `${displayId('49')}-зона`, desc: `${displayId('49')} — ботаникалық бақтың қосымша аймағы.`, type: 'Аймақ', plants: '-' },
+  ru: { name: `Зона ${displayId('49')}`, desc: `Зона ${displayId('49')} — дополнительная зона ботанического сада.`, type: 'Зона', plants: '-' },
+  en: { name: `Zone ${displayId('49')}`, desc: `Zone ${displayId('49')} is an additional area of the botanical garden.`, type: 'Zone', plants: '-' },
+  tr: { name: `Bölge ${displayId('49')}`, desc: `Bölge ${displayId('49')} botanik bahçesinin ek bir alanıdır.`, type: 'Bölge', plants: '-' },
+};
+
 for (const [zoneId, translations] of Object.entries(CUSTOM_ZONE_DATA)) {
   ZONE_DATA[zoneId] ??= {};
 
@@ -63,6 +78,7 @@ export const MAP_2D_TO_3D = {
   '1779353564216':'9',  '1779353590024':'10',  '1779353604456':'11',
   '1779353143161':'12', '1779353224032':'13',  '1779353239624':'131',
   '1779353264800':'14', '1779353454416':'141', '1779353374343':'15',
+  '1780461673101':'142',
   '1779353711151':'16', '1779353700311':'17',  '1779353691079':'18',
   '1779353624375':'19', '1779353633167':'20',  '1779353281097':'21_1',
   '1779353289217':'22', '1779353382784':'23',  '1779353904398':'24',
@@ -72,7 +88,7 @@ export const MAP_2D_TO_3D = {
   '1779352739794':'32', '1779353075385':'33',  '1779352704739':'34',
   '1779352791219':'35', '1779352829819':'36',  '1779352929778':'37',
   '1779353001802':'38', '1779353041082':'39',  '1779352530332':'40',
-  '1779352556604':'41', '1779352575403':'42',  '1779352593187':'43',
+  '1779353122001':'49', '1779352556604':'41', '1779352575403':'42',  '1779352593187':'43',
   '1779352603604':'44', '1779352645835':'45',  '1779352865306':'46',
   '1779352892714':'47', '1779352916538':'47',  '1779352881410':'48',
 };
@@ -81,10 +97,11 @@ export const ZONE_ORDER = [
   'cont',
   '1','2','21','3','4','5','6','7','8','9','10','11',
   '12','13','131','14','141','15','16','17','18','19','20',
+  '142',
   '21_1','22','23','24','241','25','251','26','27','28',
   '29','30','31','32','33','34','35','36','37','38','39',
   '40','41','42','43','44','45','46','47','48',
-  'kanal','tamshy','skvaj','bochk','joldar','meteo','tseh','shiporez','jylyjai',
+  '49','kanal','tamshy','skvaj','bochk','joldar','meteo','tseh','shiporez','jylyjai',
 ];
 
 export const MODEL_TO_ZONE_ID = {
@@ -97,10 +114,10 @@ export const MODEL_TO_ZONE_ID = {
   '30_1':'30','31_1':'31','32':'32','33':'33','34':'34',
   '35':'35',  '36':'36',  '37':'37',  '38':'38',  '39':'39',
   '40':'40','41':'41','42':'42','43':'43','44':'44',
-  '45':'45','46':'46','47':'47','48':'48',
+  '45':'45','46':'46','47':'47','48':'48','49':'49',
   '21_1':'21','131_1':'131','141':'141','241':'241','251':'251',
   'cont':'cont',
-  'kanal':'kanal','tamshy':'tamshy','skvaj':'skvaj','bochk':'bochk','joldar':'joldar',
+  'kanal':'kanal','tamshy':'tamshy','skvaj':'skvaj','bochk':'bochk','joldar':'joldar','142':'142',
   'meteo':'meteo','tseh':'tseh','shiporez':'shiporez','jylyjai':'jylyjai',
 };
 export const ZONE_MODEL_NAMES = new Set(Object.keys(MODEL_TO_ZONE_ID));
