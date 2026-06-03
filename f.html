@@ -24,7 +24,7 @@
     /* ── Панель ── */
     #panel {
       position: fixed;
-      top: 250px;
+      top: 450px;
       left: 16px;
       z-index: 9999;
       width: 280px;
@@ -241,6 +241,19 @@
 
 <!-- Төменгі кнопкалар -->
 <div id="bottom-bar">
+  <select id="draw-model-select" style="padding:10px 12px;border-radius:20px;border:1px solid rgba(99,220,180,0.15);background:rgba(10,10,20,0.9);color:#63dcb4;font-weight:600;margin-right:8px">
+    <option value="">— Draw category —</option>
+    <option value="normal">Normal zone</option>
+    <option value="kanal">Kanal (polyline)</option>
+    <option value="joldar">Joldar (polyline)</option>
+    <option value="tamshy">Tamshy (polygons group)</option>
+    <option value="skvaj">Skvaj (points)</option>
+    <option value="bochk">Bochk (points)</option>
+    <option value="meteo">Meteo (points)</option>
+    <option value="tseh">Tseh (points)</option>
+    <option value="shiporez">Shiporez (points)</option>
+    <option value="jylyjai">Jylyjai (points)</option>
+  </select>
   <button class="btn btn-primary" onclick="fitAllZones()">🗺 Барлығын көрсету</button>
   <button class="btn btn-secondary" onclick="downloadJSON()">⬇ JSON жүктеу</button>
 </div>
@@ -282,9 +295,9 @@
     draw: {
       polygon: true,
       rectangle: true,
-      polyline: false,
-      circle: false,
-      marker: false
+      polyline: true,
+      marker: true,
+      circle: false
     }
   });
   map.addControl(drawControl);
@@ -320,40 +333,77 @@
   // ── Зоналарды картаға салу ──
   function renderZones(data) {
     data.forEach((zone, i) => {
-      // GeoJSON координаталары [lng, lat] → Leaflet [lat, lng]
-      const latlngs = zone.coordinates[0].map(c => [c[1], c[0]]);
-
-      const layer = L.polygon(latlngs, {
-        color: '#63dcb4',
-        weight: 2,
-        fillColor: '#63dcb4',
-        fillOpacity: 0.15,
-        opacity: 0.85
-      });
-
-      // Аудан есептеу (Turf.js)
-      let areaText = '';
+      // Create different Leaflet layers depending on GeoJSON geometry type
+      let layer = null;
+      const model = zone.model || zone.modelName || '';
       try {
-        const poly = turf.polygon(zone.coordinates);
-        const area = turf.area(poly);
-        areaText = area < 10000
-          ? `${area.toFixed(0)} м²`
-          : `${(area / 10000).toFixed(4)} га`;
-      } catch(e) {
-        areaText = '—';
+        if (zone.type === 'Polygon' || zone.type === 'MultiPolygon') {
+          const rings = zone.type === 'Polygon' ? [zone.coordinates[0]] : zone.coordinates.map(p => p[0]);
+          const latlngs = rings.map(r => r.map(c => [c[1], c[0]]));
+          layer = L.polygon(latlngs, {
+            color: model === 'tamshy' ? '#3aa3ff' : '#63dcb4',
+            weight: 2,
+            fillColor: model === 'tamshy' ? '#3aa3ff' : '#63dcb4',
+            fillOpacity: model === 'tamshy' ? 0.22 : 0.15,
+            opacity: 0.85
+          });
+        } else if (zone.type === 'LineString') {
+          const latlngs = zone.coordinates.map(c => [c[1], c[0]]);
+          layer = L.polyline(latlngs, {
+            color: (model === 'kanal' || model === 'joldar') ? '#00a85a' : '#63dcb4',
+            weight: (model === 'kanal' || model === 'joldar') ? 3 : 2,
+            opacity: 0.95
+          });
+        } else if (zone.type === 'Point') {
+          const c = zone.coordinates;
+          const latlng = [c[1], c[0]];
+          const isInfraPoint = ['skvaj','bochk','meteo','tseh','shiporez','jylyjai'].includes(model);
+          layer = L.circleMarker(latlng, {
+            radius: isInfraPoint ? 6 : 5,
+            color: isInfraPoint ? '#ffb86b' : '#63dcb4',
+            fillColor: isInfraPoint ? '#ffb86b' : '#63dcb4',
+            fillOpacity: 1,
+            weight: 1
+          });
+        } else {
+          // Fallback: try polygon
+          const latlngs = (zone.coordinates && zone.coordinates[0]) ? zone.coordinates[0].map(c => [c[1], c[0]]) : [];
+          layer = L.polygon(latlngs, { color: '#63dcb4', weight: 2, fillColor: '#63dcb4', fillOpacity: 0.15, opacity: 0.85 });
+        }
+      } catch (e) {
+        console.warn('Failed to create layer for zone', zone.id, e);
+        return;
       }
 
-      // Орталық нүкте
-      const center = layer.getBounds().getCenter();
+      // Compute info for popup (area/length/center)
+      let areaText = '—';
+      let centerText = '—';
+      try {
+        if (zone.type === 'Polygon' || zone.type === 'MultiPolygon') {
+          const poly = turf.polygon(zone.coordinates);
+          const area = turf.area(poly);
+          areaText = area < 10000 ? `${area.toFixed(0)} м²` : `${(area / 10000).toFixed(4)} га`;
+          const center = layer.getBounds().getCenter();
+          centerText = `${center.lat.toFixed(5)}, ${center.lng.toFixed(5)}`;
+        } else if (zone.type === 'LineString') {
+          const line = turf.lineString(zone.coordinates);
+          const len = turf.length(line, {units:'kilometers'});
+          areaText = `${(len*1000).toFixed(0)} m`;
+          const center = layer.getBounds().getCenter();
+          centerText = `${center.lat.toFixed(5)}, ${center.lng.toFixed(5)}`;
+        } else if (zone.type === 'Point') {
+          const c = zone.coordinates; centerText = `${c[1].toFixed(5)}, ${c[0].toFixed(5)}`;
+        }
+      } catch(e) { /* ignore */ }
 
       layer.bindPopup(`
         <div class="popup-inner">
           <div class="popup-title">Зона ${i + 1}</div>
           <div class="popup-row">ID: <span>${zone.id}</span></div>
           <div class="popup-row">Тип: <span>${zone.type}</span></div>
-          <div class="popup-row">Нүкте саны: <span>${zone.coordinates[0].length}</span></div>
-          <div class="popup-row">Ауданы: <span>${areaText}</span></div>
-          <div class="popup-row">Орталық: <span>${center.lat.toFixed(5)}, ${center.lng.toFixed(5)}</span></div>
+          <div class="popup-row">Нүкте саны: <span>${Array.isArray(zone.coordinates[0]) ? zone.coordinates[0].length : (zone.type==='Point'?1:(zone.coordinates.length||0))}</span></div>
+          <div class="popup-row">Ауданы/Ұзындық: <span>${areaText}</span></div>
+          <div class="popup-row">Орталық: <span>${centerText}</span></div>
           <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
             <button class="btn btn-secondary edit-zone" data-zone-id="${zone.id}">Edit</button>
             <button class="btn btn-primary save-zone" data-zone-id="${zone.id}" style="display:none">Save</button>
@@ -379,6 +429,8 @@
         if (saveBtn) saveBtn.onclick = () => saveZone(zone.id, this, saveBtn, editBtn);
       });
 
+      // store model name on the layer for later save operations
+      if (model) layer.options = layer.options || {}, layer.options.modelName = model;
       layer.addTo(map);
       layerMap[zone.id] = layer;
     });
@@ -419,7 +471,8 @@
       const newZone = {
         id: (zones[idx] && zones[idx].id) || zoneId,
         type: geo.geometry.type,
-        coordinates: geo.geometry.coordinates
+        coordinates: geo.geometry.coordinates,
+        model: (zones[idx] && zones[idx].model) || (layer.options && layer.options.modelName) || undefined
       };
 
       if (idx >= 0) {
@@ -465,18 +518,21 @@
     data.forEach((zone, i) => {
       const item = document.createElement('div');
       item.className = 'zone-item';
+      const pts = zone.type === 'Point' ? 1 : (zone.type === 'LineString' ? (zone.coordinates?.length||0) : (zone.coordinates?.[0]?.length||0));
       item.innerHTML = `
         <div class="zone-dot"></div>
         <div class="zone-label">Зона ${i + 1}</div>
-        <div class="zone-pts">${zone.coordinates[0].length} нүкте</div>
+        <div class="zone-pts">${pts} нүкте</div>
       `;
       item.onclick = () => {
         const layer = layerMap[zone.id];
         if (layer) {
-          map.fitBounds(layer.getBounds(), { maxZoom: 18 });
+          if (layer.getBounds) map.fitBounds(layer.getBounds(), { maxZoom: 18 });
+          else if (layer.getLatLng) map.setView(layer.getLatLng(), 18);
           layer.openPopup();
-          layer.setStyle({ fillOpacity: 0.5, weight: 3, color: '#7fffd4' });
-          setTimeout(() => layer.setStyle({ fillOpacity: 0.15, weight: 2, color: '#63dcb4' }), 1500);
+          try { layer.setStyle && layer.setStyle({ fillOpacity: 0.5, weight: 3, color: '#7fffd4' }); }
+          catch(e){}
+          setTimeout(() => { try { layer.setStyle && layer.setStyle({ fillOpacity: 0.15, weight: 2, color: '#63dcb4' }); } catch(e){} }, 1500);
         }
       };
       list.appendChild(item);
@@ -510,6 +566,14 @@
       type: geo.geometry.type,
       coordinates: geo.geometry.coordinates
     };
+    // attach selected model/category if chosen
+    const sel = document.getElementById('draw-model-select');
+    const selVal = sel ? sel.value : '';
+    if (selVal) {
+      newZone.model = selVal;
+      layer.options = layer.options || {};
+      layer.options.modelName = selVal;
+    }
     zones.push(newZone);
     renderZones([newZone]);
     buildPanel([newZone]);
