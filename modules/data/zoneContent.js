@@ -1256,57 +1256,53 @@ plants: '250+',
 '31': {
   kk: {
     name: '31-аймақ',
-    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
-    type: 'Сәндік ағаштар',
+    desc: 'Сәндік вяз (вяз) ағаштары. Бұл аймақта сәндік вяз өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+    type: 'Сәндік вяз',
     plants: '300+',
   },
   ru: {
     name: 'Зона 31',
-    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
-    type: 'Декоративные деревья',
+    desc: 'Декоративный вяз. В этой зоне выращиваются декоративные вязовые деревья. Зона орошается через естественный канал.',
+    type: 'Декоративный вяз',
     plants: '300+',
   },
   en: {
     name: 'Zone 31',
-    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
-    type: 'Decorative Trees',
+    desc: 'Decorative elm. This zone features ornamental elm trees. The zone is irrigated through a natural channel.',
+    type: 'Decorative Elm',
     plants: '300+',
   },
   tr: {
     name: 'Bölge 31',
-    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
-    type: 'Süs Ağaçları',
+    desc: 'Süs karaağaç (elm) ağaçları. Bu bölgede süs karaağaç türleri bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+    type: 'Süs Karaağaç',
     plants: '300+',
   },
 },
 
-
-
-
-
   '32': {
   kk: {
-    name: '32-аймақ',
-    desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
-    type: 'Сәндік ағаштар',
+      name: '32-аймақ',
+      desc: 'Клен ағаштары. Бұл аймақта клен (maple) түрлері өсіріледі. Аймақ табиғи арна арқылы суарылады.',
+      type: 'Клен',
     plants: '300+',
   },
   ru: {
-    name: 'Зона 32',
-    desc: 'Декоративные деревья. В этой зоне выращиваются декоративные деревья. Зона орошается через естественный канал.',
-    type: 'Декоративные деревья',
+      name: 'Зона 32',
+      desc: 'Деревья клена. В этой зоне выращиваются виды клена. Зона орошается через естественный канал.',
+      type: 'Клён',
     plants: '300+',
   },
   en: {
-    name: 'Zone 32',
-    desc: 'Decorative trees. This zone features decorative trees. The zone is irrigated through a natural channel.',
-    type: 'Decorative Trees',
+      name: 'Zone 32',
+      desc: 'Maple trees. This zone features maple species. The zone is irrigated through a natural channel.',
+      type: 'Maple',
     plants: '300+',
   },
   tr: {
-    name: 'Bölge 32',
-    desc: 'Süs ağaçları. Bu bölgede süs ağaçları bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
-    type: 'Süs Ağaçları',
+      name: 'Bölge 32',
+      desc: 'Akçaağaç (maple) ağaçları. Bu bölgede akçaağaç türleri bulunmaktadır. Bölge doğal bir kanal aracılığıyla sulanır.',
+      type: 'Akçaağaç',
     plants: '300+',
   },
 },
@@ -1704,7 +1700,7 @@ plants: '50+',
     plants: '300+',
   },
 },
-'48': {
+  '48': {
   kk: {
     name: '48-аймақ',
     desc: 'Сәндік ағаштар. Бұл аймақта сәндік ағаштар өсіріледі. Аймақ табиғи арна арқылы суарылады.',
@@ -1731,3 +1727,103 @@ plants: '50+',
   },
 },
 };
+
+// Normalize generic zone names (auto-generate descriptive, localized names)
+(function normalizeZoneNames() {
+  const SKIP_KEYS = new Set(['cont','okr','kanal','tamshy','skvaj','bochk','joldar','meteo','tseh','shiporez','jylyjai']);
+  const LANGS = ['kk','ru','en','tr'];
+
+  const TRANSLATIONS = [
+    { keys: ['pear','груш','алмұрт'], kk: 'Алмұрт', ru: 'Груша', en: 'Pear', tr: 'Armut' },
+    { keys: ['apricot','абрикос','өрік'], kk: 'Өрік', ru: 'Абрикос', en: 'Apricot', tr: 'Kayısı' },
+    { keys: ['apple','яблон','алма'], kk: 'Алма', ru: 'Яблоня', en: 'Apple', tr: 'Elma' },
+    { keys: ['cherry','вишн','шие'], kk: 'Шие', ru: 'Вишня', en: 'Cherry', tr: 'Kiraz' },
+    { keys: ['quince','айва'], kk: 'Айва', ru: 'Айва', en: 'Quince', tr: 'Ayva' },
+    { keys: ['walnut','грецк','жаңғақ'], kk: 'Жаңғақ', ru: 'Грецкий орех', en: 'Walnut', tr: 'Ceviz' },
+    { keys: ['poplar','топол','тополь'], kk: 'Тополь', ru: 'Тополь', en: 'Poplar', tr: 'Kavak' },
+    { keys: ['vine','виног','үзім','grape'], kk: 'Жүзім бағы', ru: 'Виноградник', en: 'Vineyard', tr: 'Bağ' },
+    { keys: ['conifer','хвой','шырша','spruce','pine','larch','fir'], kk: 'Қылқан жапырақты ағаштар', ru: 'Хвойные деревья', en: 'Coniferous trees', tr: 'İğne yapraklı ağaçlar' },
+    { keys: ['hawthorn','боярышник','долана'], kk: 'Долана', ru: 'Боярышник', en: 'Hawthorn', tr: 'Alıç' },
+    { keys: ['cotoneaster','кизильник'], kk: 'Кизильник', ru: 'Кизильник', en: 'Cotoneaster', tr: 'Alıç benzeri' },
+    { keys: ['rosehip','шиповник','итмұрын'], kk: 'Итмұрын', ru: 'Шиповник', en: 'Rosehip', tr: 'Kuşburnu' },
+    { keys: ['poplar alley','тополиная аллея'], kk: 'Тополь аллеясы', ru: 'Тополиная аллея', en: 'Poplar Alley', tr: 'Kavak Sokağı' },
+  ];
+
+  function extractCultivar(desc) {
+    if (!desc) return null;
+    const m = String(desc).match(/"([^\"]+)"/);
+    return m ? m[1] : null;
+  }
+
+  function findSpeciesByDesc(desc) {
+    if (!desc) return null;
+    const low = desc.toLowerCase();
+    for (const t of TRANSLATIONS) {
+      for (const k of t.keys) {
+        if (low.indexOf(k) !== -1) return t;
+      }
+    }
+    return null;
+  }
+
+  function isGenericName(name, key, lang) {
+    if (!name) return false;
+    const idNorm = String(key).replace('_','.');
+    const patterns = [
+      new RegExp('^\\s*Zone\\s*' + idNorm + '\\s*$', 'i'),
+      new RegExp('^\\s*Зона\\s*' + idNorm + '\\s*$', 'i'),
+      new RegExp('^\\s*' + idNorm + '-аймақ\\s*$', 'i'),
+      new RegExp('^\\s*Bölge\\s*' + idNorm + '\\s*$', 'i'),
+      new RegExp('^\\s*' + idNorm + '(-|\\.)?аймақ\\s*$', 'i'),
+      new RegExp('^\\s*' + idNorm + '(-|\\.)?зона\\s*$', 'i'),
+      new RegExp('^\\s*' + idNorm + '\\s*$', 'i'),
+    ];
+    return patterns.some(p => p.test(name));
+  }
+
+  const usedNames = { kk: new Set(), ru: new Set(), en: new Set(), tr: new Set() };
+
+  Object.keys(CUSTOM_ZONE_DATA).forEach(key => {
+    if (SKIP_KEYS.has(key)) return;
+    const item = CUSTOM_ZONE_DATA[key];
+    // normalize id display
+    const idDisplay = String(key).replace('_', '.');
+
+    // ensure sets contain existing names to avoid collisions
+    LANGS.forEach(l => {
+      if (item[l] && item[l].name) usedNames[l].add(item[l].name);
+    });
+
+    LANGS.forEach(lang => {
+      const cur = item[lang] && item[lang].name ? item[lang].name : '';
+      if (!isGenericName(cur, key, lang)) return; // skip if already descriptive
+
+      // try to detect cultivar and species from the same-language desc, fallback to ru/en
+      const descSame = (item[lang] && item[lang].desc) || '';
+      const descRu = (item.ru && item.ru.desc) || '';
+      const descEn = (item.en && item.en.desc) || '';
+      const descKk = (item.kk && item.kk.desc) || '';
+      const descTr = (item.tr && item.tr.desc) || '';
+      const cultivar = extractCultivar(descSame) || extractCultivar(descRu) || extractCultivar(descEn);
+
+      let t = findSpeciesByDesc(descSame) || findSpeciesByDesc(descRu) || findSpeciesByDesc(descEn) || findSpeciesByDesc(descKk) || findSpeciesByDesc(descTr);
+      let speciesLabel = t ? t[lang] : null;
+      if (!speciesLabel) {
+        // fallback to type field if species not found
+        speciesLabel = (item[lang] && item[lang].type) || (item.en && item.en.type) || 'Zone';
+      }
+
+      let baseName = idDisplay + '. ' + speciesLabel;
+      if (cultivar) baseName += ' "' + cultivar + '"';
+
+      // ensure uniqueness per language
+      let finalName = baseName;
+      if (usedNames[lang].has(finalName)) {
+        finalName = baseName + ' (' + idDisplay + ')';
+      }
+      if (!item[lang]) item[lang] = {};
+      item[lang].name = finalName;
+      usedNames[lang].add(finalName);
+    });
+  });
+})();

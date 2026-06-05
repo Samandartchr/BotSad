@@ -46,18 +46,23 @@ export function create2dMap({ zonesData, selectZone, getSelectedZoneId }) {
       zoneIndex[jsonId] = zone;
       const id3d   = MAP_2D_TO_3D[jsonId];
       let layer = null;
+      // If this zone corresponds to a 3D "model" (kanal, tamshy, skvaj, ...),
+      // make its 2D layer non-interactive so it doesn't block clicks on real zones.
+      const isModelLayer = !!zone?.model && MODEL_COLORS.hasOwnProperty(zone.model);
+      const baseOpts = {...S_NORMAL, interactive: !isModelLayer};
       if(zone.type === 'Polygon' || zone.type === 'MultiPolygon'){
         const rings = zone.type === 'Polygon' ? [zone.coordinates[0]] : zone.coordinates.map(p=>p[0]);
         const latlngs = rings.map(r => r.map(c => [c[1], c[0]]));
-        layer = L.polygon(latlngs, {...S_NORMAL});
+        layer = L.polygon(latlngs, {...baseOpts});
       } else if(zone.type === 'LineString'){
         const latlngs = zone.coordinates.map(c => [c[1], c[0]]);
-        layer = L.polyline(latlngs, {...S_NORMAL, weight:2});
+        layer = L.polyline(latlngs, {...baseOpts, weight:2});
       } else if(zone.type === 'Point'){
-        const c = zone.coordinates; layer = L.circleMarker([c[1], c[0]], {radius:5, color:'#5de8af', fillColor:'#5de8af', fillOpacity:1, weight:1});
+        const c = zone.coordinates;
+        layer = L.circleMarker([c[1], c[0]], {...baseOpts, radius:5, fillOpacity:1, weight:1});
       } else {
         const latlngs = (zone.coordinates && zone.coordinates[0]) ? zone.coordinates[0].map(c => [c[1], c[0]]) : [];
-        layer = L.polygon(latlngs, {...S_NORMAL});
+        layer = L.polygon(latlngs, {...baseOpts});
       }
   
       layer.on('mouseover', function() {

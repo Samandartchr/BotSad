@@ -4,10 +4,19 @@ import { create2dMap } from './modules/map2d.js';
 import { create3dScene } from './modules/scene3d.js';
 import { renderPanel } from './modules/panel.js';
 import { buildZoneList } from './modules/zoneList.js';
+import { loadZoneContent } from './modules/data/zoneContentStore.js';
 
 const zonesDataUrl = new URL('./zones.json', import.meta.url);
 const modelUrl = new URL('./BotSadBezKol.glb', import.meta.url).href;
 const zonesData = await fetch(zonesDataUrl).then(res => res.json());
+
+// Load zone translations from Firestore (instead of static zoneContent.json)
+try {
+  await loadZoneContent();
+} catch (e) {
+  console.warn('Firestore zones load failed; UI will use whatever is available locally:', e);
+}
+
 
 let currentLang = 'kk';
 let currentMode = '2d';
