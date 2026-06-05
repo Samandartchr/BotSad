@@ -1,8 +1,4 @@
 import { CUSTOM_ZONE_DATA } from './zoneContent.js';
-// NOTE: this file used to contain static translations.
-// The main site now loads zone translations from Firestore via zonesFirestore.js.
-export * from './zonesFirestore.js';
-
 
 export const DISPLAY_ID = {
   '21':'2.1','131':'13.1','141':'14.1','142':'14.2','21_1':'21','241':'24.1','251':'25.1'

@@ -2,7 +2,6 @@ import { UI } from './data/ui.js';
 import { ZONE_DATA, displayZoneDescription, displayZoneName } from './data/zones.js';
 import { ZONE_IMAGE_MANIFEST } from './data/zoneContent.js';
 
-
 export function renderPanel({ currentLang, selectedZoneId }){
   const t  = UI[currentLang];
   const el = document.getElementById('panel-content');
