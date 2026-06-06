@@ -10,6 +10,7 @@ export const ZONE_IMAGE_MANIFEST = {
 };
 
 export default ZONE_IMAGE_MANIFEST;
+/*
 export const CUSTOM_ZONE_DATA = {
   cont: {
     kk: {
@@ -1726,9 +1727,9 @@ plants: '50+',
     plants: '300+',
   },
 },
-};
+};*/
 
-// Normalize generic zone names (auto-generate descriptive, localized names)
+/* Normalize generic zone names (auto-generate descriptive, localized names)
 (function normalizeZoneNames() {
   const SKIP_KEYS = new Set(['cont','okr','kanal','tamshy','skvaj','bochk','joldar','meteo','tseh','shiporez','jylyjai']);
   const LANGS = ['kk','ru','en','tr'];
@@ -1826,4 +1827,4 @@ plants: '50+',
       usedNames[lang].add(finalName);
     });
   });
-})();
+})();*/

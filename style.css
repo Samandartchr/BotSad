@@ -10,8 +10,8 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}
 
 /* LAYOUT */
-#app{display:flex;flex-direction:column;height:100vh}
-#app-body{display:flex;flex:1;overflow:hidden;min-height:0}
+#app{display:flex;flex-direction:column;height:100vh;height:100dvh;min-height:0}
+#app-body{display:flex;flex:1 1 0;height:calc(100vh - var(--hh));height:calc(100dvh - var(--hh));overflow:hidden;min-height:0}
 
 /* HEADER */
 #app-header{
@@ -41,7 +41,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 #zone-panel{
   width:var(--left-w);min-width:160px;flex-shrink:0;
   display:flex;flex-direction:column;
-  background:var(--bg2);border-right:1px solid var(--border);overflow:hidden;
+  background:var(--bg2);border-right:1px solid var(--border);overflow:hidden;min-height:0;height:100%;
 }
 .zl-header{
   padding:11px 14px 9px;flex-shrink:0;
@@ -59,17 +59,22 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   font-size:8px;font-weight:700;padding:2px 7px;border-radius:8px;
   font-family:var(--ub);
 }
-#zone-list,.zone-list-container{overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+#zone-list,.zone-list-container{overflow-y:auto;flex:1 1 0;min-height:0;padding-bottom:14px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .zl-item{
   padding:7px 14px;display:flex;align-items:center;gap:8px;
   cursor:pointer;transition:background .15s;border-left:2px solid transparent;
 }
 .zl-item:hover{background:rgba(93,232,175,.07)}
 .zl-item.active{background:rgba(93,232,175,.1);border-left-color:var(--accent)}
+.zl-number{min-width:22px;max-width:34px;height:18px;padding:0 5px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:6px;background:rgba(93,232,175,.08);color:var(--accent);font-family:var(--ub);font-size:8px;font-weight:700;line-height:1;flex:0 0 auto}
 .zl-name{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zl-symbol{--symbol-color:var(--accent);display:inline-block;flex:0 0 auto}
+.zl-symbol-line{width:18px;height:0;border-top:3px solid var(--symbol-color);border-radius:999px;box-shadow:0 0 6px color-mix(in srgb,var(--symbol-color) 55%,transparent)}
+.zl-symbol-point{width:9px;height:9px;border-radius:50%;background:var(--symbol-color);border:1px solid rgba(255,255,255,.45);box-shadow:0 0 8px color-mix(in srgb,var(--symbol-color) 65%,transparent)}
+.zl-symbol-area{width:13px;height:9px;border-radius:3px;background:color-mix(in srgb,var(--symbol-color) 35%,transparent);border:1.5px solid var(--symbol-color);box-shadow:0 0 7px color-mix(in srgb,var(--symbol-color) 45%,transparent)}
 
 /* VIEWPORT */
-#viewport-area{flex:1;position:relative;overflow:hidden;background:var(--bg)}
+#viewport-area{flex:1;position:relative;overflow:hidden;background:var(--bg);min-width:0;min-height:0}
 #map-view,#canvas-view{position:absolute;inset:0}
 #canvas-view{display:none}
 
@@ -97,7 +102,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;
   display:flex;flex-direction:column;min-height:0;
 }
-#panel-content{padding:14px;flex:1}
+#panel-content{padding:14px;flex:0 0 auto;min-height:0}
 .panel-anim{animation:fadeUp .22s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .p-tag{font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:4px;opacity:.9}
@@ -125,7 +130,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .leaflet-control-layers-selector{accent-color:var(--accent)}
 /* Zone images gallery in info panel */
 .zone-images{display:flex;gap:8px;overflow:auto;padding-top:8px}
-.zone-img-item{height:72px;border-radius:8px;border:1px solid rgba(93,232,175,.08);object-fit:cover}
+.zone-img-item{width:100%;min-width:180px;height:144px;border-radius:8px;border:1px solid rgba(93,232,175,.08);object-fit:cover}
 .leaflet-bar a{background:rgba(13,26,19,.95)!important;border-color:rgba(93,232,175,.2)!important;color:var(--accent)!important}
 .leaflet-bar a:hover{background:var(--bg3)!important}
 
@@ -166,7 +171,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 @media(max-width:768px){
   :root{--hh:44px}
   html,body{overflow:hidden}
-  #app-body{flex-direction:column;overflow-y:auto;overflow-x:hidden}
+  #app-body{flex-direction:column;overflow-y:auto;overflow-x:hidden;min-height:0}
   #zone-panel{display:none!important}
   #app-header{padding:0 10px;gap:8px}
   #hdr-title{font-size:10px;max-width:38vw}
@@ -184,11 +189,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   #right-panel{
     display:flex!important;
     position:fixed;top:var(--hh);right:-62%;width:62%;
-    height:calc(100vh - var(--hh));min-width:0;z-index:1300;
+    height:calc(100vh - var(--hh));height:calc(100dvh - var(--hh));min-width:0;min-height:0;z-index:1300;
     border-left:1px solid var(--border);transition:right .3s cubic-bezier(.4,0,.2,1);
     background:var(--bg2);
     flex-direction:column;
-    overflow-y:auto;box-shadow:-8px 0 32px rgba(0,0,0,.5);
+    overflow:hidden;box-shadow:-8px 0 32px rgba(0,0,0,.5);
   }
   #right-panel.mobile-open{right:0}
   #mobile-overlay{
@@ -216,7 +221,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   #mobile-close-btn span{font-size:10px!important}
   #mobile-close-btn:hover{background:rgba(93,232,175,.06)}
   .mobile-only{display:flex!important}
-  #mobile-zone-section{flex-direction:column!important;max-height:none!important;flex:1;border-bottom:none!important}
+  #mobile-zone-section{flex-direction:column!important;max-height:none!important;flex:1 1 0!important;min-height:0!important;border-bottom:none!important;overflow:hidden!important}
+  #zone-list-m{flex:1 1 0!important;min-height:0!important;max-height:none!important;padding-bottom:22px!important}
   .zl-header{padding:7px 10px 6px}
   .zl-header-title,#zone-count-badge,.zone-count-badge{font-size:7.5px}
   .zl-item{padding:6px 10px}
@@ -226,6 +232,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   .p-title{font-size:12.5px}
   .p-subtitle{font-size:10px;margin-bottom:8px}
   .p-img{height:58px;margin-bottom:8px}
+  .zone-img-item{min-width:150px;height:120px}
   .p-desc{font-size:11.5px;line-height:1.55;margin-bottom:8px}
   .p-stats{gap:4px;margin-bottom:8px}
   .stat-card{padding:6px 8px}

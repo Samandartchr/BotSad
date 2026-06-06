@@ -2,6 +2,8 @@ import { UI } from './data/ui.js';
 import { ZONE_DATA, displayZoneDescription, displayZoneName } from './data/zones.js';
 import { ZONE_IMAGE_MANIFEST } from './data/zoneContent.js';
 
+const ZONE_IMAGE_MANIFEST_JSON = loadZoneImageManifest();
+
 export function renderPanel({ currentLang, selectedZoneId }){
   const t  = UI[currentLang];
   const el = document.getElementById('panel-content');
@@ -50,50 +52,59 @@ export function renderPanel({ currentLang, selectedZoneId }){
   document.getElementById('panel-footer').textContent = t.footer;
 }
 
-// Try to load numbered images from data/zoneimg/{zoneId}/1.jpg .. 10.(jpg|png|webp)
 function renderZoneImages(zoneId){
   const container = document.getElementById('zone-imgs');
   if(!container) return;
   container.innerHTML = '';
   if(!zoneId) return;
+  container.dataset.zoneId = String(zoneId);
   const base = `modules/data/zoneimg/${zoneId}/`;
-  // If manifest exists for this zone, use it (ordered list of filenames)
+
+  ZONE_IMAGE_MANIFEST_JSON.then(jsonManifest => {
+    if (container.dataset.zoneId !== String(zoneId)) return;
+    const images = jsonManifest[String(zoneId)];
+    if (Array.isArray(images) && images.length) {
+      container.innerHTML = '';
+      images.forEach(name => appendZoneImage(container, base + name));
+    }
+  });
+
+  // Fallback for manually maintained entries.
   const manifest = ZONE_IMAGE_MANIFEST && ZONE_IMAGE_MANIFEST[String(zoneId)];
   if (manifest && Array.isArray(manifest) && manifest.length) {
     for (const name of manifest) {
-      const url = base + name;
-      const img = new Image();
-      img.onload = function(){ img.className='zone-img-item'; container.appendChild(img); };
-      img.onerror = ()=>{};
-      img.src = url;
+      appendZoneImage(container, base + name);
     }
     return;
   }
+
+  // Last fallback for static files that were not included in the generated JSON.
   const exts = ['jpg','jpeg','png','webp'];
   const max = 10;
-  let found = 0;
   for(let i=1;i<=max;i++){
     for(const ext of exts){
-      const url = `${base}${i}.${ext}`;
-      const img = new Image();
-      img.onload = (()=>{
-        return function(){
-          img.className = 'zone-img-item';
-          container.appendChild(img);
-        };
-      })();
-      img.onerror = ()=>{};
-      img.src = url;
+      appendZoneImage(container, `${base}${i}.${ext}`);
     }
   }
-  // also try common names
   ['cover','0','image','main'].forEach(name=>{
     for(const ext of exts){
-      const url = `${base}${name}.${ext}`;
-      const img = new Image();
-      img.onload = function(){ img.className='zone-img-item'; container.appendChild(img); };
-      img.onerror = ()=>{};
-      img.src = url;
+      appendZoneImage(container, `${base}${name}.${ext}`);
     }
   });
+}
+
+function loadZoneImageManifest() {
+  return fetch(new URL('./data/zoneImageManifest.json', import.meta.url))
+    .then(res => res.ok ? res.json() : {})
+    .catch(() => ({}));
+}
+
+function appendZoneImage(container, url) {
+  const img = new Image();
+  img.onload = function(){
+    img.className = 'zone-img-item';
+    container.appendChild(img);
+  };
+  img.onerror = ()=>{};
+  img.src = url;
 }

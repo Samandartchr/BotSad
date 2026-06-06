@@ -831,7 +831,7 @@ function renderEditor(key) {
 
 window.addField = function(l) {
   const input = document.getElementById('newFieldKey_' + l);
-  const key = input.value.trim().toLowerCase().replace(/[^a-z0-9_]/g, '_');
+  const key = input.value.trim();
   if (!key) return;
   const data = readEditorFields();
   if (data[l][key] !== undefined) { showToast('error', '✕', 'Field already exists in ' + l); return; }

@@ -4,10 +4,13 @@ import { create2dMap } from './modules/map2d.js';
 import { create3dScene } from './modules/scene3d.js';
 import { renderPanel } from './modules/panel.js';
 import { buildZoneList } from './modules/zoneList.js';
+import { initZoneData } from './modules/data/zones.js';
+
 
 const zonesDataUrl = new URL('./zones.json', import.meta.url);
 const modelUrl = new URL('./BotSadBezKol.glb', import.meta.url).href;
 const zonesData = await fetch(zonesDataUrl).then(res => res.json());
+await initZoneData();
 
 let currentLang = 'kk';
 let currentMode = '2d';

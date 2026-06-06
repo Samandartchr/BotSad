@@ -10,6 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "generate-zone-images": "node scripts/generate-zone-image-manifest.mjs",
     "save-manifest": "node save-manifest-server.js"
   }
 }

@@ -1,4 +1,5 @@
-import { ZONE_DATA, ZONE_ORDER, displayZoneName } from './data/zones.js';
+import { ZONE_DATA, ZONE_ORDER, displayId, displayZoneName } from './data/zones.js';
+import { INFRASTRUCTURE_STYLES } from './data/infrastructureStyles.js';
 
 export function buildZoneList({
   currentLang,
@@ -30,7 +31,13 @@ export function buildZoneList({
       const item = document.createElement('div');
       item.className = 'zl-item' + (id === selectedZoneId ? ' active' : '');
       item.dataset.zoneId = id;
-      item.innerHTML = `<span class="zl-name">${displayZoneName(zd.name)}</span>`;
+      const infraStyle = INFRASTRUCTURE_STYLES[id];
+      const symbol = infraStyle
+        ? `<span class="zl-symbol zl-symbol-${infraStyle.symbol}" style="--symbol-color:${infraStyle.color}" aria-hidden="true"></span>`
+        : '';
+      const zoneNumber = getZoneNumberLabel(id);
+      const numberBadge = zoneNumber ? `<span class="zl-number">${zoneNumber}</span>` : '';
+      item.innerHTML = `${symbol}${numberBadge}<span class="zl-name">${displayZoneName(zd.name)}</span>`;
       item.addEventListener('click', () => {
         selectZone(id, 'list');
         if (currentMode === '2d') panTo2d(id);
@@ -40,4 +47,9 @@ export function buildZoneList({
 
     return count;
   }
+}
+
+function getZoneNumberLabel(id) {
+  const label = displayId(String(id));
+  return label !== String(id) || /^\d+$/.test(String(id)) ? label : '';
 }

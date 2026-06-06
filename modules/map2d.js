@@ -1,4 +1,5 @@
 import { MAP_2D_TO_3D } from './data/zones.js';
+import { INFRASTRUCTURE_STYLES } from './data/infrastructureStyles.js';
 
 export function create2dMap({ zonesData, selectZone, getSelectedZoneId }) {
   const leafMap = L.map('map', {zoomControl:false}).setView([43.298, 68.302], 15);
@@ -8,17 +9,9 @@ export function create2dMap({ zonesData, selectZone, getSelectedZoneId }) {
   const S_NORMAL = {color:'#5de8af',weight:1.5,fillColor:'#5de8af',fillOpacity:0.08,opacity:0.6};
   const S_HOVER  = {color:'#8af7c8',weight:2.5,fillColor:'#8af7c8',fillOpacity:0.2,opacity:0.85};
   const S_ACTIVE = {color:'#ffffff',weight:2.5,fillColor:'#5de8af',fillOpacity:0.28,opacity:1};
-  const MODEL_COLORS = {
-    kanal: '#00a85a',
-    joldar: '#00a85a',
-    tamshy: '#3aa3ff',
-    bochk: '#ffb86b',
-    skvaj: '#9b59b6',
-    meteo: '#f39c12',
-    tseh: '#e74c3c',
-    shiporez: '#16a085',
-    jylyjai: '#f1c40f'
-  };
+  const MODEL_COLORS = Object.fromEntries(
+    Object.entries(INFRASTRUCTURE_STYLES).map(([model, style]) => [model, style.color])
+  );
 
   function styleFor(zone, state = 'normal'){
     const model = zone?.model;

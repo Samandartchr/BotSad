@@ -244,8 +244,8 @@
   <select id="draw-model-select" style="padding:10px 12px;border-radius:20px;border:1px solid rgba(99,220,180,0.15);background:rgba(10,10,20,0.9);color:#63dcb4;font-weight:600;margin-right:8px">
     <option value="">— Draw category —</option>
     <option value="normal">Normal zone</option>
-    <option value="kanal">Kanal (polyline)</option>
-    <option value="joldar">Joldar (polyline)</option>
+    <option value="kanal">Kanal (graph)</option>
+    <option value="joldar">Joldar (graph)</option>
     <option value="tamshy">Tamshy (polygons group)</option>
     <option value="skvaj">Skvaj (points)</option>
     <option value="bochk">Bochk (points)</option>
@@ -311,6 +311,11 @@
   let zones = [];
   let selectedZoneId = null;
   const layerMap = {};  // id -> leaflet layer
+  const GRAPH_MODELS = new Set(['kanal', 'joldar']);
+  const GRAPH_COLORS = {
+    kanal: '#0070b6',
+    joldar: '#a8a200'
+  };
 
   // ── Зоналарды жүктеу ──
   fetch('zones.json')

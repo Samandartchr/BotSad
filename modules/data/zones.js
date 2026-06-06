@@ -1,4 +1,4 @@
-import { CUSTOM_ZONE_DATA } from './zoneContent.js';
+//import { CUSTOM_ZONE_DATA } from './zoneContent.js';
 
 export const DISPLAY_ID = {
   '21':'2.1','131':'13.1','141':'14.1','142':'14.2','21_1':'21','241':'24.1','251':'25.1'
@@ -59,7 +59,7 @@ ZONE_DATA['49'] = {
   en: { name: `Zone ${displayId('49')}`, desc: `Zone ${displayId('49')} is an additional area of the botanical garden.`, type: 'Zone', plants: '-' },
   tr: { name: `Bölge ${displayId('49')}`, desc: `Bölge ${displayId('49')} botanik bahçesinin ek bir alanıdır.`, type: 'Bölge', plants: '-' },
 };
-
+/*
 for (const [zoneId, translations] of Object.entries(CUSTOM_ZONE_DATA)) {
   ZONE_DATA[zoneId] ??= {};
 
@@ -69,7 +69,7 @@ for (const [zoneId, translations] of Object.entries(CUSTOM_ZONE_DATA)) {
       ...content,
     };
   }
-}
+}*/
 
 export const MAP_2D_TO_3D = {
   '1779353153553':'1',  '1779353203097':'2',   '1779353212969':'21',
@@ -121,3 +121,27 @@ export const MODEL_TO_ZONE_ID = {
   'meteo':'meteo','tseh':'tseh','shiporez':'shiporez','jylyjai':'jylyjai',
 };
 export const ZONE_MODEL_NAMES = new Set(Object.keys(MODEL_TO_ZONE_ID));
+
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAVZ-AchG-qwZFItO7E3LwEjONF1jI_Vw0",
+  authDomain: "ubtwebsite.firebaseapp.com",
+  projectId: "ubtwebsite",
+  appId: "1:389268561038:web:453dc4313a67d82a553ddf"
+};
+
+export async function initZoneData() {
+  const app = getApps().length ? getApps()[0] : initializeApp(FIREBASE_CONFIG);
+  const db = getFirestore(app);
+  const snap = await getDocs(collection(db, 'zones'));
+  snap.forEach(d => {
+    const id = d.id;
+    ZONE_DATA[id] ??= {};
+    const data = d.data();
+    for (const lang of ['kk', 'ru', 'en', 'tr']) {
+      if (data[lang]) ZONE_DATA[id][lang] = { ...ZONE_DATA[id]?.[lang], ...data[lang] };
+    }
+  });
+}
