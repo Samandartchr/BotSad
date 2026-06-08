@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ботаникалық бақ · ХҚТУ</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+
+<script type="importmap">{
+  "imports": {
+    "three": "./node_modules/three/build/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ── HEADER ── -->
+  <header id="app-header">
+    <div class="hdr-brand">
+      <span id="hdr-title">Ботаникалық бақ</span>
+    </div>
+    <div class="hdr-controls">
+      <label class="hdr-control">
+        <span id="lang-label" class="hdr-control-label">Language</span>
+        <select id="lang-select" class="hdr-select" aria-label="Language">
+          <option value="kk">KAZ</option>
+          <option value="ru">RUS</option>
+          <option value="en">ENG</option>
+          <option value="tr">TUR</option>
+        </select>
+      </label>
+      <label class="hdr-control">
+        <span id="mode-label" class="hdr-control-label">Mode</span>
+        <select id="mode-select" class="hdr-select" aria-label="Mode">
+          <option value="2d">2D</option>
+          <option value="3d">3D</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <!-- ── APP BODY: 3 columns ── -->
+  <div id="app-body">
+
+    <!-- LEFT COLUMN: Zone list (desktop 15%) -->
+    <aside id="zone-panel">
+      <div class="zl-header">
+        <span class="zl-header-title" id="zones-title-label">Зоналар тізімі</span>
+        <span id="zone-count-badge" class="zone-count-badge">63</span>
+      </div>
+      <div id="zone-list" class="zone-list-container"></div>
+    </aside>
+
+    <!-- CENTER COLUMN: Viewport (desktop 65%) -->
+    <div id="viewport-area">
+
+      <!-- Back button — top-left inside viewport -->
+      <button id="back-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span id="back-label">Артқа</span>
+      </button>
+
+      <!-- 2D MAP -->
+      <div id="map-view">
+        <div id="map"></div>
+        <div class="cursor-hint" id="cursor-hint-2d">Зонаны басыңыз</div>
+      </div>
+
+      <!-- 3D CANVAS -->
+      <div id="canvas-view">
+        <canvas id="canvas3d"></canvas>
+        <div id="loading">
+          <div class="spinner"></div>
+          <div id="load-pct">0%</div>
+          <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
+          <span id="loading-label">Жүктелуде…</span>
+        </div>
+        <div class="cursor-hint" id="cursor-hint-3d">3D моделдегі зонаны басыңыз</div>
+      </div>
+
+    </div><!-- /viewport-area -->
+
+    <!-- RIGHT COLUMN: Info on desktop / stacked below viewport on mobile -->
+    <aside id="info-section">
+      <div id="panel-content"></div>
+      <div id="panel-footer"></div>
+    </aside>
+
+    <!-- RIGHT COLUMN: Controls + Info (desktop 20%) / Mobile drawer -->
+    <aside id="right-panel">
+
+      <!-- Mobile: close button (hidden on desktop via CSS) -->
+      <button id="mobile-close-btn" class="mobile-only" aria-label="Жабу">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span style="font-size:11px;margin-right:auto;color:var(--text3);font-family:'Unbounded',sans-serif;letter-spacing:.05em">ЖАБУ</span>
+      </button>
+
+      <!-- Mobile-only: Zone list inside drawer -->
+      <div id="mobile-zone-section" class="mobile-only" style="flex-direction:column;border-bottom:1px solid var(--border2);flex-shrink:0;max-height:38vh;display:none">
+        <div class="zl-header">
+          <span class="zl-header-title" id="zones-title-label-m">Зоналар тізімі</span>
+          <span id="zone-count-badge-m" class="zone-count-badge"></span>
+        </div>
+        <div id="zone-list-m" class="zone-list-container" style="overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--border) transparent"></div>
+      </div>
+
+    </aside><!-- /right-panel -->
+
+  </div><!-- /app-body -->
+</div><!-- /app -->
+
+<!-- Mobile overlay backdrop -->
+<div id="mobile-overlay"></div>
+
+<!-- Mobile drawer handle -->
+<button id="mobile-menu-btn" aria-label="Мәзір">
+  &lt;
+</button>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
